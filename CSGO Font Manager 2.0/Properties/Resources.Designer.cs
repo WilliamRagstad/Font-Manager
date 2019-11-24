@@ -22,7 +22,7 @@ namespace CSGO_Font_Manager_2._0.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace CSGO_Font_Manager_2._0.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CSGO_Font_Manager_2._0.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace CSGO_Font_Manager_2._0.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace CSGO_Font_Manager_2._0.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap drophere {
+        public static System.Drawing.Bitmap drophere {
             get {
                 object obj = ResourceManager.GetObject("drophere", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace CSGO_Font_Manager_2._0.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fadeout_blue {
+        public static System.Drawing.Bitmap fadeout_blue {
             get {
                 object obj = ResourceManager.GetObject("fadeout_blue", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +83,7 @@ namespace CSGO_Font_Manager_2._0.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fontmanager {
+        public static System.Drawing.Bitmap fontmanager {
             get {
                 object obj = ResourceManager.GetObject("fontmanager", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +93,7 @@ namespace CSGO_Font_Manager_2._0.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fontmanager_watermark {
+        public static System.Drawing.Bitmap fontmanager_watermark {
             get {
                 object obj = ResourceManager.GetObject("fontmanager_watermark", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +103,17 @@ namespace CSGO_Font_Manager_2._0.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] FontReg {
+        public static byte[] FontManagerUpdater {
+            get {
+                object obj = ResourceManager.GetObject("FontManagerUpdater", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] FontReg {
             get {
                 object obj = ResourceManager.GetObject("FontReg", resourceCulture);
                 return ((byte[])(obj));
@@ -113,7 +123,7 @@ namespace CSGO_Font_Manager_2._0.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Thumbnail {
+        public static System.Drawing.Bitmap Thumbnail {
             get {
                 object obj = ResourceManager.GetObject("Thumbnail", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -123,7 +133,7 @@ namespace CSGO_Font_Manager_2._0.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Thumbnail1 {
+        public static System.Drawing.Bitmap Thumbnail1 {
             get {
                 object obj = ResourceManager.GetObject("Thumbnail1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -133,7 +143,7 @@ namespace CSGO_Font_Manager_2._0.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Thumbnail2 {
+        public static System.Drawing.Bitmap Thumbnail2 {
             get {
                 object obj = ResourceManager.GetObject("Thumbnail2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));

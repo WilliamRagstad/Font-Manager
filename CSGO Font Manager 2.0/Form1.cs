@@ -27,6 +27,9 @@ namespace CSGO_Font_Manager_2._0
         public static string FontManagerFolder = HomeFolder + @"Font Manager 2.0\";
         public static string FontsFolder = FontManagerFolder + @"Fonts\";
         public static string DataPath = FontManagerFolder + @"Data\";
+        public static string UpdaterPath = DataPath + "FontManagerUpdater.exe";
+
+        protected static string UpdaterToken = "cf38519aeddfb438e69e1f8a4b1412dd";
 
         public static string csgoFolder = null;
         public static string csgoFontsFolder = null;
@@ -176,25 +179,20 @@ namespace CSGO_Font_Manager_2._0
 
         private void checkForUpdates()
         {
-            string currentStableVersionURL =
-                "https://raw.githubusercontent.com/WilliamRagstad/Font-Manager-2.0/master/CSGO%20Font%20Manager%202.0/stableVersion.txt";
-            var webRequest = WebRequest.Create(currentStableVersionURL);
+            // Extract the updater binary
+            if (!File.Exists(UpdaterPath)) File.WriteAllBytes(UpdaterPath, Properties.Resources.FontManagerUpdater);
+            string programPath = System.Reflection.Assembly.GetEntryAssembly().Location; // Get the location where the program (.exe) was started from
+            ProcessStartInfo psi = new ProcessStartInfo(UpdaterPath, $"\"{UpdaterToken}\" \"{VersionNumber}\" \"Font Manager 2.0.exe\" \"{programPath}\"");
+            psi.CreateNoWindow = true;
+            psi.UseShellExecute = false;
+            psi.RedirectStandardOutput = true;
+            psi.RedirectStandardError = true;
+            var p = Process.Start(psi);
+            p.WaitForExit();
+            string response = p.StandardOutput.ReadToEnd();
+            string errors = p.StandardError.ReadToEnd();
 
-            using (var response = webRequest.GetResponse())
-            using(var content = response.GetResponseStream())
-            using(var reader = new StreamReader(content)){
-                var newVersion = reader.ReadToEnd();
-                if (VersionNumber != newVersion)
-                {
-                    // New version is released
-                    if (MessageBox.Show(
-                        "A new version of Font Manager is available!\nDo you want to install it now?\nVersion: " +
-                        newVersion, "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-                    {
-                        Process.Start("https://gamebanana.com/tools/6732");
-                    }
-                }
-            }
+            if (!string.IsNullOrWhiteSpace(errors)) throw new Exception(errors);
         }
 
         private static void SetupFolderStructure()
@@ -442,12 +440,12 @@ namespace CSGO_Font_Manager_2._0
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to reset Font Manager?\n" + 
-                                "This will only restore the path to Counter Strike: Global Offensive. If you want to delete all fonts, you must do so through the program.\n\n" + 
-                                "Current CS:GO Folder: " + csgoFolder, "Reset?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (MessageBox.Show("This will only restore the path to Counter Strike: Global Offensive and restore utility programs (in case they need to be updated). If you want to delete all fonts, you must do so through the program.\n\n" + 
+                                "Current CS:GO Folder: " + csgoFolder + "\n\nAre you sure you want to reset Font Manager?", "Reset?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 Directory.Delete(DataPath, true);
                 LoadCSGOFolder();
+                checkForUpdates();
             }
         }
 
