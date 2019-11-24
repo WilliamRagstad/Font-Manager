@@ -20,7 +20,9 @@ namespace CSGO_Font_Manager_2._0
 {
     public partial class Form1 : Form
     {
-        public static string VersionNumber = "2.14";
+        public static string VersionNumber = "2.15";    // Remember to update stableVersion.txt when releasing a new stable update.
+                                                        // This will notify all Font Manager 2.0 clients that there is an update available.
+                                                        // To push the notification, commit and push to the master repository on GitHub.
         public static string HomeFolder = $@"C:\Users\{Environment.UserName}\Documents\csgo\";
         public static string FontManagerFolder = HomeFolder + @"Font Manager 2.0\";
         public static string FontsFolder = FontManagerFolder + @"Fonts\";
@@ -165,10 +167,34 @@ namespace CSGO_Font_Manager_2._0
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            checkForUpdates();
             fontPreview_richTextBox.Visible = false;
             SetupFolderStructure();
             LoadCSGOFolder();
             refreshFontList();
+        }
+
+        private void checkForUpdates()
+        {
+            string currentStableVersionURL =
+                "https://raw.githubusercontent.com/WilliamRagstad/Font-Manager-2.0/master/CSGO%20Font%20Manager%202.0/stableVersion.txt";
+            var webRequest = WebRequest.Create(currentStableVersionURL);
+
+            using (var response = webRequest.GetResponse())
+            using(var content = response.GetResponseStream())
+            using(var reader = new StreamReader(content)){
+                var newVersion = reader.ReadToEnd();
+                if (VersionNumber != newVersion)
+                {
+                    // New version is released
+                    if (MessageBox.Show(
+                        "A new version of Font Manager is available!\nDo you want to install it now?\nVersion: " +
+                        newVersion, "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+                        Process.Start("https://gamebanana.com/tools/6732");
+                    }
+                }
+            }
         }
 
         private static void SetupFolderStructure()

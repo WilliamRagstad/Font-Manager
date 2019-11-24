@@ -144,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonmanager_icon.ico" />
+    <Content Include="stableVersion.txt" />
     <None Include="Resources\FontReg.exe" />
     <None Include="Resources\drop your font here.png" />
   </ItemGroup>
