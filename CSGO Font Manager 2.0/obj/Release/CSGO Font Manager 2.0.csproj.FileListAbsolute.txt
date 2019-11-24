@@ -1,0 +1,11 @@
+D:\Documents\Visual Studio repos\CSGO Font Manager 2.0\CSGO Font Manager 2.0\bin\Release\CSGO Font Manager 2.0.exe.config
+D:\Documents\Visual Studio repos\CSGO Font Manager 2.0\CSGO Font Manager 2.0\bin\Release\CSGO Font Manager 2.0.exe
+D:\Documents\Visual Studio repos\CSGO Font Manager 2.0\CSGO Font Manager 2.0\bin\Release\CSGO Font Manager 2.0.pdb
+D:\Documents\Visual Studio repos\CSGO Font Manager 2.0\CSGO Font Manager 2.0\obj\Release\CSGO_Font_Manager_2._0.AboutBox1.resources
+D:\Documents\Visual Studio repos\CSGO Font Manager 2.0\CSGO Font Manager 2.0\obj\Release\CSGO_Font_Manager_2._0.AddFontWindow.resources
+D:\Documents\Visual Studio repos\CSGO Font Manager 2.0\CSGO Font Manager 2.0\obj\Release\CSGO_Font_Manager_2._0.Form1.resources
+D:\Documents\Visual Studio repos\CSGO Font Manager 2.0\CSGO Font Manager 2.0\obj\Release\CSGO_Font_Manager_2._0.Properties.Resources.resources
+D:\Documents\Visual Studio repos\CSGO Font Manager 2.0\CSGO Font Manager 2.0\obj\Release\CSGO Font Manager 2.0.csproj.GenerateResource.Cache
+D:\Documents\Visual Studio repos\CSGO Font Manager 2.0\CSGO Font Manager 2.0\obj\Release\CSGO Font Manager 2.0.csproj.CoreCompileInputs.cache
+D:\Documents\Visual Studio repos\CSGO Font Manager 2.0\CSGO Font Manager 2.0\obj\Release\CSGO Font Manager 2.0.exe
+D:\Documents\Visual Studio repos\CSGO Font Manager 2.0\CSGO Font Manager 2.0\obj\Release\CSGO Font Manager 2.0.pdb
