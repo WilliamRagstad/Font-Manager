@@ -11,6 +11,8 @@
 - One click font removal 
 - **Support for the new panorama update!**
 
+View the changelog [here](changelog.md).
+
 >  Just take me to the [installation](#Install)...
 
 ## Video
