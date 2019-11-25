@@ -19,10 +19,6 @@ View the changelog [here](changelog.md).
 
 [![Tutorial](https://img.youtube.com/vi/MhOnvkEIy1k/0.jpg)](https://www.youtube.com/watch?v=MhOnvkEIy1k)
 
-<div align="center">
-    <iframe height="450" src="https://www.youtube.com/embed/MhOnvkEIy1k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-
 ## Install
 
 Get the latest version of **Font Manager 2.0** from Gamebanana by pressing the link below:
