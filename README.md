@@ -15,7 +15,7 @@
 
 ## Video
 
-[![IMAGE ALT TEXT HERE](https://www.youtube.com/embed/MhOnvkEIy1k)
+[![Tutorial](https://www.youtube.com/embed/MhOnvkEIy1k)]
 
 
 ## Install
