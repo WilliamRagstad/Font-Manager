@@ -28,6 +28,7 @@ This is a minor update that implements a background installer for easy installat
 - Font files not copied to respective folder and weird names - 1
 - new font install no feedback - 1
 - remove border of buttons on focus - 3
+- Detecting updates 
 
 ### Changed
 
@@ -37,7 +38,6 @@ This is a minor update that implements a background installer for easy installat
   - drag and drop to listview to add new font file
   - minus to remove font
 - Drag and drop to listview
-- 
 
 
 ## Released `2.15` *- 2019-11-25*
