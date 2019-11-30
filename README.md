@@ -11,14 +11,13 @@
 - One click font removal 
 - **Support for the new panorama update!**
 
+View the changelog [here](changelog.md).
+
 >  Just take me to the [installation](#Install)...
 
 ## Video
 
-<div align="center">
-    <iframe height="450" src="https://www.youtube.com/embed/MhOnvkEIy1k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-
+[![Tutorial](https://img.youtube.com/vi/MhOnvkEIy1k/0.jpg)](https://www.youtube.com/watch?v=MhOnvkEIy1k)
 
 ## Install
 
