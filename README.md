@@ -21,11 +21,7 @@ View the changelog [here](changelog.md).
 
 ## Install
 
-Get the latest version of **Font Manager** from Gamebanana by pressing the link below:
-
-<div align="center">
-<a href="https://gamebanana.com/tools/6732"><img src="https://gamebanana.com/tools/embeddables/6732?type=large"/></a>
-</div>
+[Get the latest version of **Font Manager**](/releases)
 
 ## More
 
