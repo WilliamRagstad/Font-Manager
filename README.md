@@ -21,7 +21,7 @@ View the changelog [here](changelog.md).
 
 ## Install
 
-[Download the latest version of **Font Manager** here](/releases).
+[Download the latest version here](/releases).
 
 ## More
 
