@@ -45,8 +45,8 @@
             // listBox1
             // 
             this.listBox1.AllowDrop = true;
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(235)))), ((int)(((byte)(244)))));
             this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -78,7 +78,7 @@
             // 
             // apply_button
             // 
-            this.apply_button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.apply_button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.apply_button.BackColor = System.Drawing.Color.MediumSpringGreen;
             this.apply_button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -89,12 +89,11 @@
             this.apply_button.TabIndex = 10;
             this.apply_button.Text = "Apply Selected Font";
             this.apply_button.UseVisualStyleBackColor = false;
-            this.apply_button.Visible = false;
             this.apply_button.Click += new System.EventHandler(this.apply_button_Click);
             // 
             // donate_button
             // 
-            this.donate_button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.donate_button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.donate_button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(253)))), ((int)(((byte)(10)))));
             this.donate_button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -132,7 +131,7 @@
             // 
             // fontPreview_richTextBox
             // 
-            this.fontPreview_richTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.fontPreview_richTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.fontPreview_richTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(35)))), ((int)(((byte)(36)))));
             this.fontPreview_richTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -181,11 +180,9 @@
             this.remove_button.BackColor = System.Drawing.Color.Transparent;
             this.remove_button.BackgroundImage = global::CSGO_Font_Manager.Properties.Resources.remove_retro1;
             this.remove_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.remove_button.Enabled = false;
             this.remove_button.FlatAppearance.BorderSize = 0;
             this.remove_button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.remove_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.remove_button.Font = new System.Drawing.Font("Enigmatic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.remove_button.Location = new System.Drawing.Point(242, 9);
             this.remove_button.Name = "remove_button";
             this.remove_button.Size = new System.Drawing.Size(22, 22);
@@ -202,7 +199,6 @@
             this.addFont_button.FlatAppearance.BorderSize = 0;
             this.addFont_button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.addFont_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addFont_button.Font = new System.Drawing.Font("Enigmatic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addFont_button.Location = new System.Drawing.Point(215, 9);
             this.addFont_button.Name = "addFont_button";
             this.addFont_button.Size = new System.Drawing.Size(20, 20);

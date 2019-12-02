@@ -187,7 +187,6 @@ namespace CSGO_Font_Manager
                     addFont_button.Visible = true;
                     remove_button.Visible = true;
                     apply_button.Text = "Apply Selected Font";
-                    apply_button.Visible = true;
                     donate_button.Text = "Donate ♡";
                     donate_button.BackColor = Color.FromArgb(255, 184, 253, 10);
 
@@ -198,7 +197,6 @@ namespace CSGO_Font_Manager
                     addFont_button.Visible = false;
                     remove_button.Visible = false;
                     apply_button.Text = "Add Selected Font";
-                    apply_button.Visible = true;
                     donate_button.Text = "Cancel";
                     donate_button.BackColor = Color.FromArgb(255, 196, 104, 92);
 
@@ -342,11 +340,6 @@ namespace CSGO_Font_Manager
 
             // Add default font
             listBox1.Items.Insert(0, defaultFontName);
-            
-            apply_button.Hide();
-            remove_button.Enabled = false;
-            fontPreview_richTextBox.Visible = false;
-
             listBox1.SelectedIndex = 0;
         }
 

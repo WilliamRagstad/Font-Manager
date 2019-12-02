@@ -51,22 +51,14 @@ At the bottom of the window is version information as well as a link to restore 
 
 ##### 1.1.1 Add font
 
-To add a font, press the green "Add Font" button and you will see a new window pop up. Here you can drag and drop zip files containing a collection of fonts or a single font file.
-
-You also have the option to add an already installed font by pressing the "Add System Font" button. This will provide you a font selection dialogue box, where you can select a system font. Press "Ok" when you have selected a font of choice  and it will be added to the Font Library.
-
-At the bottom of the font drag and drop area are two links, one where you can download new fonts, and another to close the window.
+ To add a font, press the green "+" button or drag-and-drop directly into the font list. 
 
 ##### 1.1.2 Remove font
 
-To delete a font from the Font Manager, you need to select it from the font library and then press the Remove Font button.
+ To delete a font from the Font Manager, you need to select it from the font library and then press the red "X" button. 
 
-This will prompt for confirmation and then remove the stored local files from Font Manager.
-
-
-
-> ### NOTICE!
-> This will NOT uninstall the font from your system. This must be done manually.
+> ### NOTICE
+> **This will NOT uninstall the font from your computer**! This must be done *manually*.
 
 #### 1.2 Add Font
 
@@ -76,7 +68,7 @@ The add font window looks the same as the main window, but here you can select f
 
 #### 2.1 Developers
 
-Font Manager is originally developed by [Dotch](https://twitter.com/WilliamRagstad), but have had huge help from [Mr. Maxim]() *(or [BananaGaming]( https://www.youtube.com/BananaGaming ))* since mid v2.0! Now we have partnered up and will collaborate on the development of Font Manager from now on!
+Font Manager is originally developed by [Dotch](https://twitter.com/WilliamRagstad), but have had huge help from [Mr. Maxim](https://twitter.com/BananaGamingCS) *(or [BananaGaming](https://www.youtube.com/BananaGaming))* since mid v2.0! Now we have partnered up and will collaborate on the development of Font Manager from now on! I strongly suggest you take a look at his [Youtube](https://www.youtube.com/BananaGaming) for more awesome content and tools for CS:GO!
 
 #### 2.2 Other
 
