@@ -1,5 +1,5 @@
 # Change Log
-All notable changes to Font Manager 2.0 will be documented in this file.
+All notable changes to Font Manager will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/).
 <!-- View template here: https://gist.github.com/juampynr/4c18214a8eb554084e21d6e288a18a2c -->
