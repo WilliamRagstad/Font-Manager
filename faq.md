@@ -17,13 +17,10 @@ FAQ
 
 
 - **Q: My font won't work... What shall I do?**
-- A: There could me multiple reasons why your font
-doesn't work. Here are the general problems and
-solutions:
+- A: There could me multiple reasons why your font doesn't work. Here are the general problems and solutions:
 
   1. **The font was installed incorrectly.**
-This might only be solved by manually uninstalling the font in "C:\Windows\Fonts" and then reinstalling it through Font Manager. (!!!) But be aware that not all fonts are possible to
-use with Font Manager. This is not due to poor software development, but some fonts are not recognizable by CS:GO.
+This might only be solved by manually uninstalling the font in `C:\Windows\Fonts` and then reinstalling it through Font Manager. But be aware that not all fonts are possible to use with Font Manager. This is not due to poor software development, but some fonts are not recognizable by CS:GO.
 
   2. **The CS:GO path is incorrect.**
 Font Manager should warn of this when installing/applying fonts. You can fix it by pressing the "Reset" link at the bottom of the main window.
@@ -39,6 +36,6 @@ A: It depends on if you're running Font Manager as Administrator, in such case, 
 
 - **Q: How do I uninstall Font Manager?**
 - A: Well, there is not uninstaller. So you must delete the folder and the program yourself:
-1. Delete the folder: `C:\Users\[USERNAME]\Documents\csgo\Font Manager`
-2. Delete: `Font Manager.exe`
+  1. Delete the folder: `C:\Users\[USERNAME]\Documents\csgo\Font Manager`
+  2. Delete: `Font Manager.exe`
   3. **Done!** It's all gone :)
