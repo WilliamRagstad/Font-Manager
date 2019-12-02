@@ -89,7 +89,7 @@ projects have helped develop Font Manager:
 
 #### 3.1 FAQ
 
-[Read the full FAQ here](faq).
+[Read the full FAQ here](faq.md).
 
 #### 3.2 Need help?
 
