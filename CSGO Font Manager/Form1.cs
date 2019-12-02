@@ -20,7 +20,7 @@ namespace CSGO_Font_Manager
                                                        // This will notify all Font Manager 2.0 clients that there is an update available.
                                                        // To push the notification, commit and push to the master repository on GitHub.
         public static string HomeFolder = $@"C:\Users\{Environment.UserName}\Documents\csgo\";
-        public static string FontManagerFolder = HomeFolder + @"Font Manager 2.0\";
+        public static string FontManagerFolder = HomeFolder + @"Font Manager\";
         public static string FontsFolder = FontManagerFolder + @"Fonts\";
         public static string DataPath = FontManagerFolder + @"Data\";
         public static string UpdaterPath = DataPath + "FontManagerUpdater.exe";
@@ -173,6 +173,11 @@ namespace CSGO_Font_Manager
 
         private void addFont_button_Click(object sender, EventArgs e)
         {
+            if (isFirstStartup)
+            {
+                MessageBox.Show("Protip: If you want you can also just drag-and-drop fonts inside the font list.", "Drag and Drop!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
             switchView(FormViews.AddSystemFont);
             showFontPreview();
         }
@@ -188,7 +193,7 @@ namespace CSGO_Font_Manager
                     remove_button.Visible = true;
                     apply_button.Text = "Apply Selected Font";
                     donate_button.Text = "Donate ♡";
-                    donate_button.BackColor = Color.FromArgb(255, 184, 253, 10);
+                    donate_button.BackColor = Color.FromArgb(184, 253, 10);
 
                     refreshFontList();
                     break;
@@ -198,7 +203,7 @@ namespace CSGO_Font_Manager
                     remove_button.Visible = false;
                     apply_button.Text = "Add Selected Font";
                     donate_button.Text = "Cancel";
-                    donate_button.BackColor = Color.FromArgb(255, 196, 104, 92);
+                    donate_button.BackColor = Color.FromArgb(196, 104, 92);
 
                     loadSystemFontList();
                     break;
@@ -411,7 +416,7 @@ namespace CSGO_Font_Manager
                                 bool csgoIsRunning = Process.GetProcessesByName("csgo").Length != 0;
 
                                 MessageBox.Show($"Successfully applied {listBox1.SelectedItem}!" +
-                                                (csgoIsRunning ? "\n\nRestart CS:GO for the font to take effect" : ""),
+                                                (csgoIsRunning ? "\n\nRestart CS:GO for the font to take effect." : ""),
                                     "Font Applied!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                             else
@@ -573,52 +578,55 @@ namespace CSGO_Font_Manager
 
         public static FontFamily GetFontFamilyByName(string name)   // name = LemonMilk
         {
-            // System.Drawing.FontFamily.Families[90]
+            // This is probably unesessary
             foreach (FontFamily fontFamily in System.Drawing.FontFamily.Families)
             {
                 if (fontFamily.Name == name) return fontFamily;
             }
-
-            /*
+            
             return _privateFontCollection.Families.FirstOrDefault(x => // x = Lemon/Milk
             {
-                int dist = Fastenshtein.Levenshtein.Distance(x.Name, name);
-                if (dist == 0) return true;
-                return (float) name.Length / dist < 1;
-                
-                //int matchingChars = 0;
-                //for (int i = 0; i < name.Length; i++)
-                //{
-                //    char c = char.ToLower(name[i]);
-                //    if (x.Name.ToLower().Contains(c)) matchingChars++;
-                //}
-                //float matchPrecentage = (float) matchingChars / name.Length;
-                //return matchPrecentage > 0.75f;
-                
+                return StringSimilarity(name, x.Name) > 0.75f;
             });
-            */
             
-            //// System.Drawing.FontFamily.Families[90]
-            //foreach (FontFamily fontFamily in System.Drawing.FontFamily.Families)
-            //{
-            //    int dist = Fastenshtein.Levenshtein.Distance(f);
-            //    if (dist < 4) return fontFamily;
-            //}
+            return null;
+        }
 
-            /*
-            // Load the font in the folder named [name]
-            foreach (string file in Directory.GetFiles(FontsFolder + name))
+        private static float StringSimilarity(string a, string b)
+        {
+            int matchingChars = 0;
+            int offset = 0;
+            int minLen = Math.Min(a.Length, b.Length);
+            for (int i = 0; i < minLen - offset; i++)
             {
-                if (IsFontExtension(Path.GetExtension(file)))
+                char c = char.ToLower(a[i+offset]);
+                char d = char.ToLower(b[i]);
+                if (c == d)
                 {
-                    PrivateFontCollection fontCol = new PrivateFontCollection();
-                    fontCol.AddFontFile(file);
-                    return fontCol.Families[0];
+                    matchingChars++;
+                }
+                else
+                {
+                    bool offsetFound = false;
+                    // Check forwards for a matching char and change the offset to there in such case
+                    while (i + offset < a.Length)
+                    {
+                        char e = char.ToLower(a[i + offset]);
+                        if (e == d)
+                        {
+                            matchingChars++;
+                            offsetFound = true;
+                            break;
+                        }
+                        offset++;
+                    }
+
+                    if (!offsetFound) offset = 0;
                 }
             }
-            */
-
-            return null;
+            
+            float matchPrecentage = (float)matchingChars / minLen;
+            return matchPrecentage;
         }
 
         public static void AddFont(string fontname, string fullFileName)
