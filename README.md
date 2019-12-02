@@ -1,4 +1,4 @@
-![](CSGO Font Manager\Resources\fontmanager.png)
+![](CSGO Font Manager/Resources/fontmanager.png)
 
 <div align="center">
 	<em>The one and only font manager for CS:GO</em>
