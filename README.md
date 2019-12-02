@@ -1,9 +1,11 @@
-# Font Manager
-***The one and only font manager for CS:GO***
+![Font Manager Logo](https://github.com/WilliamRagstad/Font-Manager/blob/master/CSGO%20Font%20Manager/Resources/fontmanager.png?raw=true)
 
-**CS:GO Font Manager** is a software designed to simplify switching between different fonts for the game. It features a "Drag-and-Drop" system which allows you to add new fonts in seconds.
 
-This software is safe to use and is completely VAC free. What it does is replaces the 'font' folder located inside panorama and adds the font to your liking.
+# Introduction
+
+**Font Manager** is a software designed to simplify switching between different custom fonts for CS:GO.
+
+It features a "Drag-and-Drop" system which allows you to add new fonts in seconds. This software is safe to use and is completely VAC free.
 
 #### Features:
 
@@ -17,21 +19,75 @@ View the changelog [here](changelog.md).
 
 >  Just take me to the [installation](#Install)...
 
-## Video
+## Videos
 
 [![Tutorial](https://img.youtube.com/vi/MhOnvkEIy1k/0.jpg)](https://www.youtube.com/watch?v=MhOnvkEIy1k)
 
-## Install
 
-[Download the latest version here](/releases).
 
-## More
 
-#### Need help?
+
+> ## Install
+> [Download the latest version from here](https://github.com/WilliamRagstad/Font-Manager/releases ).
+
+
+
+
+
+
+## About
+
+### 1 Windows
+
+#### 1.1 Main
+
+The main window is consisting of a list view representing your current Font Library. These fonts can be applied to CS:GO.
+
+When a font is selected, the "Apply Selected Font" button will appear, pressing this will prompt you to change the current CS:GO font. If you confirm this, the program will change your font in CS:GO to the new one.
+
+In case you appreciate the program, there is also a button for donations in the shape of trade offers through Steam. 
+
+At the bottom of the window is version information as well as a link to restore the saved path to the CS:GO local files, and a link to see additional information about Font Manager.
+
+##### 1.1.1 Add font
+
+ To add a font, press the green "+" button or drag-and-drop directly into the font list. 
+
+##### 1.1.2 Remove font
+
+ To delete a font from the Font Manager, you need to select it from the font library and then press the red "X" button. 
+
+> ### NOTICE
+> **This will NOT uninstall the font from your computer**! This must be done *manually*.
+
+#### 1.2 Add Font
+
+The add font window looks the same as the main window, but here you can select from a list of already installed fonts on your computer. Select one and press the "Add Selected Font" button.
+
+### 2 Credits
+
+#### 2.1 Developers
+
+Font Manager is originally developed by [Dotch](https://twitter.com/WilliamRagstad), but have had huge help from [Mr. Maxim](https://twitter.com/BananaGamingCS) *(or [BananaGaming](https://www.youtube.com/BananaGaming))* since mid v2.0! Now we have partnered up and will collaborate on the development of Font Manager from now on! I strongly suggest you take a look at his [Youtube](https://www.youtube.com/BananaGaming) for more awesome content and tools for CS:GO!
+
+#### 2.2 Others
+
+Thanks to the following people whose
+projects have helped develop Font Manager:
+
+- Kliu - developer of [FontReg](http://code.kliu.org/misc/fontreg/).
+
+### 3 More
+
+#### 3.1 FAQ
+
+Read the full [FAQ here](faq.md).
+
+#### 3.2 Need help?
 
 Visit our [Subreddit](https://www.reddit.com/r/csgoFontManager/).
 
-#### Do you have feedback?
+#### 3.3 Do you have feedback?
 
 Submit it [here](https://docs.google.com/forms/d/e/1FAIpQLSfkChgD2T-RYNyfBCRL2EjUQfJ3y8tvPKemGJca2kMU1jV8AQ/viewform)!
 

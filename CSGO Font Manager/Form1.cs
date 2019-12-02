@@ -20,7 +20,7 @@ namespace CSGO_Font_Manager
                                                        // This will notify all Font Manager 2.0 clients that there is an update available.
                                                        // To push the notification, commit and push to the master repository on GitHub.
         public static string HomeFolder = $@"C:\Users\{Environment.UserName}\Documents\csgo\";
-        public static string FontManagerFolder = HomeFolder + @"Font Manager 2.0\";
+        public static string FontManagerFolder = HomeFolder + @"Font Manager\";
         public static string FontsFolder = FontManagerFolder + @"Fonts\";
         public static string DataPath = FontManagerFolder + @"Data\";
         public static string UpdaterPath = DataPath + "FontManagerUpdater.exe";
@@ -46,91 +46,73 @@ namespace CSGO_Font_Manager
 
         public Form1()
         {
-            // Check .NET Framework
-            if (Get45PlusFromRegistry() == null)
-            {
-                if (MessageBox.Show("You need to use .NET Framework 4.5.2 or higher. Press OK to download.") == DialogResult.OK)
-                {
-                    Process.Start("https://www.microsoft.com/sv-se/download/details.aspx?id=42642");
-                }
-            }
-            
-
             InitializeComponent();
             version_label.Text = "Version " + VersionNumber;
             AllowDrop = true;
         }
 
-        private static string Get45PlusFromRegistry()
+        private void Form1_Load(object sender, EventArgs e)
         {
-            const string subkey = @"SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\";
+            SetupFolderStructure();
+            checkForUpdates();
+            LoadCSGOFolder();
+            refreshFontList();
 
-            using (var ndpKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32).OpenSubKey(subkey))
+            // Check if first startup
+            if (File.Exists(FirstStartupPath))
             {
-                if (ndpKey != null && ndpKey.GetValue("Release") != null) {
-                    return CheckFor45PlusVersion((int) ndpKey.GetValue("Release"));
-                }
-                else
-                {
-                    return null;
-                } 
+                isFirstStartup = File.ReadAllText(FirstStartupPath) != "1";
+                File.WriteAllText(FirstStartupPath, "1");
             }
-   
-            // Checking the version using >= enables forward compatibility.
-            string CheckFor45PlusVersion(int releaseKey)
+            else
             {
-                if (releaseKey >= 528040)
-                    return ">4.8";
-                if (releaseKey >= 461808)
-                    return "4.7.2";
-                if (releaseKey >= 461308)
-                    return "4.7.1";
-                if (releaseKey >= 460798)
-                    return "4.7";
-                if (releaseKey >= 394802)
-                    return "4.6.2";
-                if (releaseKey >= 394254)
-                    return "4.6.1";      
-                if (releaseKey >= 393295)
-                    return "4.6";      
-                if (releaseKey >= 379893)
-                    return "4.5.2";
-                if (releaseKey >= 378675)
-                    return null; //"4.5.1";      
-                if (releaseKey >= 378389)
-                    return null; //"4.5";      
-                // This code should never execute. A non-null release key should mean
-                // that 4.5 or later is installed.
-                return null;
+                isFirstStartup = true;
+                File.WriteAllText(FirstStartupPath, "1");
             }
+
+
+            // Update all texts
+            switchView(FormViews.Main);
+        }
+
+        private void checkForUpdates()
+        {
+            // Extract the updater binary
+            try
+            {
+                if (!File.Exists(UpdaterPath)) File.WriteAllBytes(UpdaterPath, Properties.Resources.FontManagerUpdater);
+            }
+            catch { }
+
+            string programPath = System.Reflection.Assembly.GetEntryAssembly().Location; // Get the location where the program (.exe) was started from
+            ProcessStartInfo psi = new ProcessStartInfo(UpdaterPath, $"\"{UpdaterToken}\" \"{VersionNumber}\" \"{programPath}\"");
+            psi.CreateNoWindow = true;
+            psi.UseShellExecute = false;
+            psi.RedirectStandardOutput = true;
+            psi.RedirectStandardError = true; 
+            var p = Process.Start(psi);
+            p.WaitForExit();
+            string response = p.StandardOutput.ReadToEnd();
+            string errors = p.StandardError.ReadToEnd();
+
+            if (!string.IsNullOrWhiteSpace(errors))
+            {
+                // throw new Exception(errors);
+            }
+
+        }
+
+        private static void SetupFolderStructure()
+        {
+            Directory.CreateDirectory(FontsFolder);
+            Directory.CreateDirectory(FontManagerFolder);
+            Directory.CreateDirectory(HomeFolder);
+            Directory.CreateDirectory(DataPath);
         }
         
         private void listBox1_Click(object sender, EventArgs e)
         {
-            if (CurrentFormView == FormViews.Main)
-            {
-                if (listBox1.SelectedItems.Count == 1)
-                {
-                    apply_button.Visible = true;
-                    remove_button.Enabled = true;
-                    showFontPreview();// If it's not showing, try again... Might just have been a random failure
-                    showFontPreview();
-                }
-                else
-                {
-                    apply_button.Visible = false;
-                    remove_button.Enabled = false;
-                }
-            }
-            else if (CurrentFormView == FormViews.AddSystemFont)
-            {
-                if (listBox1.SelectedItems.Count == 1)
-                {
-                    showFontPreview();
-                    showFontPreview();
-                }
-                
-            }
+            showFontPreview();
         }
 
         private void showFontPreview()
@@ -138,11 +120,9 @@ namespace CSGO_Font_Manager
             fontPreview_richTextBox.Visible = false;
             fontPreview_richTextBox.Text = fontPreviewText;
             string selectedFontName = listBox1.SelectedItem.ToString();
+            if (selectedFontName == defaultFontName) return;
             if (CurrentFormView == FormViews.Main)
             {
-                fontPreview_richTextBox.Visible = false;
-                
-
                 if (selectedFontName == defaultFontName)
                 {
                     fontPreview_richTextBox.Text = "";
@@ -164,11 +144,8 @@ namespace CSGO_Font_Manager
                             break;
                         }
                     }
-
                     if (fontFile == null) return;
-                
-                    AddFont(selectedFontName, fontFile);
-
+                     
                     FontFamily fontFamily = GetFontFamilyByName(selectedFontName);
                     if (fontFamily == null) return;
                     fontPreview_richTextBox.Font = new Font(fontFamily, 14);
@@ -196,6 +173,11 @@ namespace CSGO_Font_Manager
 
         private void addFont_button_Click(object sender, EventArgs e)
         {
+            if (isFirstStartup)
+            {
+                MessageBox.Show("Protip: If you want you can also just drag-and-drop fonts inside the font list.", "Drag and Drop!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
             switchView(FormViews.AddSystemFont);
             showFontPreview();
         }
@@ -211,7 +193,7 @@ namespace CSGO_Font_Manager
                     remove_button.Visible = true;
                     apply_button.Text = "Apply Selected Font";
                     donate_button.Text = "Donate ♡";
-                    donate_button.BackColor = Color.FromArgb(255, 184, 253, 10);
+                    donate_button.BackColor = Color.FromArgb(184, 253, 10);
 
                     refreshFontList();
                     break;
@@ -221,7 +203,7 @@ namespace CSGO_Font_Manager
                     remove_button.Visible = false;
                     apply_button.Text = "Add Selected Font";
                     donate_button.Text = "Cancel";
-                    donate_button.BackColor = Color.FromArgb(255, 196, 104, 92);
+                    donate_button.BackColor = Color.FromArgb(196, 104, 92);
 
                     loadSystemFontList();
                     break;
@@ -322,66 +304,6 @@ namespace CSGO_Font_Manager
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            SetupFolderStructure();
-            checkForUpdates();
-            fontPreview_richTextBox.Visible = false;
-            LoadCSGOFolder();
-            refreshFontList();
-
-            // Check if first startup
-            if (File.Exists(FirstStartupPath))
-            {
-                isFirstStartup = File.ReadAllText(FirstStartupPath) != "1";
-                File.WriteAllText(FirstStartupPath, "1");
-            }
-            else
-            {
-                isFirstStartup = true;
-                File.WriteAllText(FirstStartupPath, "1");
-            }
-
-
-            // Update all texts
-            switchView(FormViews.Main);
-        }
-
-        private void checkForUpdates()
-        {
-            // Extract the updater binary
-            try
-            {
-                if (!File.Exists(UpdaterPath)) File.WriteAllBytes(UpdaterPath, Properties.Resources.FontManagerUpdater);
-            }
-            catch { }
-
-            string programPath = System.Reflection.Assembly.GetEntryAssembly().Location; // Get the location where the program (.exe) was started from
-            ProcessStartInfo psi = new ProcessStartInfo(UpdaterPath, $"\"{UpdaterToken}\" \"{VersionNumber}\" \"{programPath}\"");
-            psi.CreateNoWindow = true;
-            psi.UseShellExecute = false;
-            psi.RedirectStandardOutput = true;
-            psi.RedirectStandardError = true; 
-            var p = Process.Start(psi);
-            p.WaitForExit();
-            string response = p.StandardOutput.ReadToEnd();
-            string errors = p.StandardError.ReadToEnd();
-
-            if (!string.IsNullOrWhiteSpace(errors))
-            {
-                // throw new Exception(errors);
-            }
-
-        }
-
-        private static void SetupFolderStructure()
-        {
-            Directory.CreateDirectory(FontsFolder);
-            Directory.CreateDirectory(FontManagerFolder);
-            Directory.CreateDirectory(HomeFolder);
-            Directory.CreateDirectory(DataPath);
-        }
-
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://github.com/WilliamRagstad/Font-Manager");
@@ -396,11 +318,6 @@ namespace CSGO_Font_Manager
             }
         }
 
-        private void refresh_button_Click(object sender, EventArgs e)
-        {
-            refreshFontList();
-        }
-
         private void refreshFontList()
         {
             //refresh list of fonts
@@ -412,16 +329,22 @@ namespace CSGO_Font_Manager
                 if (File.Exists(dir + "\\fonts.conf"))
                 {
                     listBox1.Items.Add(foldername);
+
+                    // Add the font to the private font collection
+                    foreach (string file in Directory.GetFiles(dir))
+                    {
+                        if (IsFontExtension(Path.GetExtension(file)))
+                        {
+                            // _privateFontCollection.AddFontFile(file);
+                
+                            AddFont(foldername, file);
+                        }
+                    }
                 }
             }
 
             // Add default font
             listBox1.Items.Insert(0, defaultFontName);
-            
-            apply_button.Hide();
-            remove_button.Enabled = false;
-            fontPreview_richTextBox.Visible = false;
-
             listBox1.SelectedIndex = 0;
         }
 
@@ -493,7 +416,7 @@ namespace CSGO_Font_Manager
                                 bool csgoIsRunning = Process.GetProcessesByName("csgo").Length != 0;
 
                                 MessageBox.Show($"Successfully applied {listBox1.SelectedItem}!" +
-                                                (csgoIsRunning ? "\n\nRestart CS:GO for the font to take effect" : ""),
+                                                (csgoIsRunning ? "\n\nRestart CS:GO for the font to take effect." : ""),
                                     "Font Applied!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                             else
@@ -612,12 +535,8 @@ namespace CSGO_Font_Manager
             string csgoFolder = null;
             DriveInfo[] allDrives = DriveInfo.GetDrives();
 
-            #region Match definitions
-
             string p_programFiles = @"Program[\x20]*Files";
             string p_steam = @"steam";
-
-            #endregion
 
             foreach (DriveInfo drive in allDrives)
             {
@@ -659,25 +578,61 @@ namespace CSGO_Font_Manager
 
         public static FontFamily GetFontFamilyByName(string name)   // name = LemonMilk
         {
+            // This is probably unesessary
+            foreach (FontFamily fontFamily in System.Drawing.FontFamily.Families)
+            {
+                if (fontFamily.Name == name) return fontFamily;
+            }
+            
             return _privateFontCollection.Families.FirstOrDefault(x => // x = Lemon/Milk
             {
-                int matchingChars = 0;
-                for (int i = 0; i < name.Length; i++) if (x.Name.ToLower().Contains(char.ToLower(name[i]))) matchingChars++;
-                float matchPrecentage = (float) matchingChars / name.Length;
-                return matchPrecentage > 0.75f;
+                return StringSimilarity(name, x.Name) > 0.75f;
             });
+            
+            return null;
+        }
+
+        private static float StringSimilarity(string a, string b)
+        {
+            int matchingChars = 0;
+            int offset = 0;
+            int minLen = Math.Min(a.Length, b.Length);
+            for (int i = 0; i < minLen - offset; i++)
+            {
+                char c = char.ToLower(a[i+offset]);
+                char d = char.ToLower(b[i]);
+                if (c == d)
+                {
+                    matchingChars++;
+                }
+                else
+                {
+                    bool offsetFound = false;
+                    // Check forwards for a matching char and change the offset to there in such case
+                    while (i + offset < a.Length)
+                    {
+                        char e = char.ToLower(a[i + offset]);
+                        if (e == d)
+                        {
+                            matchingChars++;
+                            offsetFound = true;
+                            break;
+                        }
+                        offset++;
+                    }
+
+                    if (!offsetFound) offset = 0;
+                }
+            }
+            
+            float matchPrecentage = (float)matchingChars / minLen;
+            return matchPrecentage;
         }
 
         public static void AddFont(string fontname, string fullFileName)
         {
             AddFont(File.ReadAllBytes(fullFileName));
-
-            FontFamily addNewFont = GetFontFamilyByName(fontname);
-            if (addNewFont == null)
-            {
-                // Try adding it using the filename
-                _privateFontCollection.AddFontFile(fullFileName);
-            }
+            _privateFontCollection.AddFontFile(fullFileName);
         }   
 
         public static void AddFont(byte[] fontBytes)

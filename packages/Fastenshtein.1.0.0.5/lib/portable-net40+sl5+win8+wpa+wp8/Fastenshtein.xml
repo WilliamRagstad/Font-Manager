@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Fastenshtein</name>
+    </assembly>
+    <members>
+        <member name="T:Fastenshtein.AutoCompleteLevenshtein">
+            <summary>
+            Measures the difference between two strings.
+            Uses the Levenshtein string difference algorithm.
+            </summary>
+        </member>
+        <member name="M:Fastenshtein.AutoCompleteLevenshtein.Distance(System.String,System.String)">
+            <summary>
+            Compares the two strings and returns a measure of their summarily with 0 being an exact match.
+            </summary>
+            <param name="value1">the incomplete value entered by the user</param>
+            <param name="value2">the value to compare value1 against</param>
+            <returns>0 exact match less a positive value, lower the value the best match</returns>
+        </member>
+        <member name="T:Fastenshtein.Levenshtein">
+            <summary>
+            Measures the difference between two strings.
+            Uses the Levenshtein string difference algorithm.
+            </summary>
+            <summary>
+            Measures the difference between two strings.
+            Uses the Levenshtein string difference algorithm.
+            </summary>
+        </member>
+        <member name="M:Fastenshtein.Levenshtein.#ctor(System.String)">
+            <summary>
+            Creates a new instance with a value to test other values against
+            </summary>
+            <param Name="value">Value to compare other values to.</param>
+        </member>
+        <member name="P:Fastenshtein.Levenshtein.StoredLength">
+            <summary>
+            gets the length of the stored value that is tested against
+            </summary>
+        </member>
+        <member name="M:Fastenshtein.Levenshtein.DistanceFrom(System.String)">
+            <summary>
+            Compares a value to the stored value. 
+            Not thread safe.
+            </summary>
+            <returns>Difference. 0 complete match.</returns>
+        </member>
+        <member name="M:Fastenshtein.Levenshtein.Distance(System.String,System.String)">
+            <summary>
+            Compares the two values to find the minimum Levenshtein distance. 
+            Thread safe.
+            </summary>
+            <returns>Difference. 0 complete match.</returns>
+        </member>
+    </members>
+</doc>

@@ -152,11 +152,12 @@ namespace CSGO_Font_Manager
                     bool fontWasInstalled = InstallFont(fontpath);
                     if (fontWasInstalled)
                     {
+                        AddFont(filename, fontpath);
+
                         // Setup correct files and folders in FontsFolder
                         string fontsFile = fileFontDirectory + "\\fonts.conf";
 
-                        Form1.AddFont(filename, fontpath);
-                        FontFamily fontFamily = Form1.GetFontFamilyByName(filename);
+                        FontFamily fontFamily = GetFontFamilyByName(filename);
                         if (fontFamily == null)
                         {
                             listBox1.Enabled = true;
@@ -164,8 +165,8 @@ namespace CSGO_Font_Manager
                         }
 
                         setupFontsDirectory(fontsFile, fontFamily.Name, Path.GetFileName(fontpath));
-
-                        if (i == 0) addedFonts += filename;
+                        
+                        if (i == 0) addedFonts += fontFamily.Name;
                         else  addedFonts += ", " + filename;
                     }
                     else
