@@ -155,8 +155,8 @@ namespace CSGO_Font_Manager
                         // Setup correct files and folders in FontsFolder
                         string fontsFile = fileFontDirectory + "\\fonts.conf";
 
-                        Form1.AddFont(filename, fontpath);
-                        FontFamily fontFamily = Form1.GetFontFamilyByName(filename);
+                        AddFont(filename, fontpath);
+                        FontFamily fontFamily = GetFontFamilyByName(filename);
                         if (fontFamily == null)
                         {
                             listBox1.Enabled = true;
