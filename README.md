@@ -1,12 +1,5 @@
 ![Font Manager Logo](https://github.com/WilliamRagstad/Font-Manager/blob/master/CSGO%20Font%20Manager/Resources/fontmanager.png?raw=true)
 
-<div align="center">
-	<em>The one and only font manager for CS:GO</em>
-</div>
-
-
-
-
 
 # Introduction
 
