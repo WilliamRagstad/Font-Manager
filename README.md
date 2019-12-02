@@ -1,7 +1,9 @@
-# Font Manager 2.0
+# Font Manager
 ***The one and only font manager for CS:GO***
 
-**CS:GO Font Manager** is software designed to simplify switching between different fonts for the game [Counter Strike: Global Offensive](http://store.steampowered.com/app/730/CounterStrike_Global_Offensive/). It features a unique "Drag-and-Drop" system which allows you to add new fonts in seconds! 
+**CS:GO Font Manager** is a software designed to simplify switching between different fonts for the game. It features a "Drag-and-Drop" system which allows you to add new fonts in seconds.
+
+This software is safe to use and is completely VAC free. What it does is replaces the 'font' folder located inside panorama and adds the font to your liking.
 
 #### Features:
 
@@ -11,22 +13,17 @@
 - One click font removal 
 - **Support for the new panorama update!**
 
+View the changelog [here](changelog.md).
+
 >  Just take me to the [installation](#Install)...
 
 ## Video
 
-<div align="center">
-    <iframe height="450" src="https://www.youtube.com/embed/MhOnvkEIy1k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-
+[![Tutorial](https://img.youtube.com/vi/MhOnvkEIy1k/0.jpg)](https://www.youtube.com/watch?v=MhOnvkEIy1k)
 
 ## Install
 
-Get the latest version of **Font Manager 2.0** from Gamebanana by pressing the link below:
-
-<div align="center">
-<a href="https://gamebanana.com/tools/6732"><img src="https://gamebanana.com/tools/embeddables/6732?type=large"/></a>
-</div>
+[Download the latest version here](/releases).
 
 ## More
 
