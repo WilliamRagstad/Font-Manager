@@ -78,7 +78,7 @@ The add font window looks the same as the main window, but here you can select f
 
 Font Manager is originally developed by [Dotch](https://twitter.com/WilliamRagstad), but have had huge help from [Mr. Maxim]() *(or [BananaGaming]( https://www.youtube.com/BananaGaming ))* since mid v2.0! Now we have partnered up and will collaborate on the development of Font Manager from now on!
 
-#### 2.2 Other
+#### 2.2 Others
 
 Thanks to the following people whose
 projects have helped develop Font Manager:
@@ -89,7 +89,7 @@ projects have helped develop Font Manager:
 
 #### 3.1 FAQ
 
-[Read the full FAQ here](faq.md).
+Read the full [FAQ here](faq.md).
 
 #### 3.2 Need help?
 
