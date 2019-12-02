@@ -23,7 +23,7 @@ View the changelog [here](changelog.md).
 
 ## Install
 
-[Download the latest version here](/releases).
+[Download the latest version here](https://github.com/WilliamRagstad/Font-Manager/releases).
 
 ## More
 
