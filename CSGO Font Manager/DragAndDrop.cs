@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace CSGO_Font_Manager_2._0
+namespace CSGO_Font_Manager
 {
     public partial class Form1
     {
