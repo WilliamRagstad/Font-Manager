@@ -55,8 +55,12 @@
   <ItemGroup>
     <Reference Include="ActiproSoftware.Shared.WinForms, Version=18.1.341.0, Culture=neutral, PublicKeyToken=c27e062d3c1a4763" />
     <Reference Include="ActiproSoftware.SyntaxEditor.WinForms, Version=18.1.341.0, Culture=neutral, PublicKeyToken=c27e062d3c1a4763, processorArchitecture=MSIL" />
+    <Reference Include="Fastenshtein, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fastenshtein.1.0.0.5\lib\net40-client\Fastenshtein.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
@@ -90,6 +94,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

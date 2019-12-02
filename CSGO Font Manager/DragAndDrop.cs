@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace CSGO_Font_Manager_2._0
+namespace CSGO_Font_Manager
 {
     public partial class Form1
     {
@@ -155,8 +155,8 @@ namespace CSGO_Font_Manager_2._0
                         // Setup correct files and folders in FontsFolder
                         string fontsFile = fileFontDirectory + "\\fonts.conf";
 
-                        Form1.AddFont(filename, fontpath);
-                        FontFamily fontFamily = Form1.GetFontFamilyByName(filename);
+                        AddFont(filename, fontpath);
+                        FontFamily fontFamily = GetFontFamilyByName(filename);
                         if (fontFamily == null)
                         {
                             listBox1.Enabled = true;

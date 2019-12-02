@@ -1,4 +1,4 @@
-﻿namespace CSGO_Font_Manager_2._0
+﻿namespace CSGO_Font_Manager
 {
     partial class Form1
     {
@@ -179,7 +179,7 @@
             // 
             this.remove_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.remove_button.BackColor = System.Drawing.Color.Transparent;
-            this.remove_button.BackgroundImage = global::CSGO_Font_Manager_2._0.Properties.Resources.remove_retro1;
+            this.remove_button.BackgroundImage = global::CSGO_Font_Manager.Properties.Resources.remove_retro1;
             this.remove_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.remove_button.Enabled = false;
             this.remove_button.FlatAppearance.BorderSize = 0;
@@ -197,7 +197,7 @@
             // 
             this.addFont_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.addFont_button.BackColor = System.Drawing.Color.Transparent;
-            this.addFont_button.BackgroundImage = global::CSGO_Font_Manager_2._0.Properties.Resources.add_retro;
+            this.addFont_button.BackgroundImage = global::CSGO_Font_Manager.Properties.Resources.add_retro;
             this.addFont_button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.addFont_button.FlatAppearance.BorderSize = 0;
             this.addFont_button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
