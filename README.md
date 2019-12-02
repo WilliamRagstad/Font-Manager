@@ -1,7 +1,7 @@
 # Font Manager
 ***The one and only font manager for CS:GO***
 
-**CS:GO Font Manager** is a software designed to simplify switching between different fonts for the game. It features a "Drag-and-Drop" system which allows you to add new fonts in seconds. A must have if you like to experiment with the look of the game.
+**CS:GO Font Manager** is a software designed to simplify switching between different fonts for the game. It features a "Drag-and-Drop" system which allows you to add new fonts in seconds.
 
 This software is safe to use and is completely VAC free. What it does is replaces the 'font' folder located inside panorama and adds the font to your liking.
 
