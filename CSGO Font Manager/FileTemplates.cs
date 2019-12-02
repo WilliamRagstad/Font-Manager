@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSGO_Font_Manager_2._0
+namespace CSGO_Font_Manager
 {
     class FileTemplates
     {
