@@ -77,6 +77,10 @@ projects have helped develop Font Manager:
 
 - Kliu - developer of [FontReg](http://code.kliu.org/misc/fontreg/).
 
+#### 2.3 Community
+
+Recieved a lot of improvement, ideas and suggestions from feedback!
+
 ### 3 More
 
 #### 3.1 FAQ
