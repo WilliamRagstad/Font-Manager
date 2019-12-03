@@ -19,7 +19,7 @@ namespace CSGO_Font_Manager
         public static string VersionNumber = "3.0";    // Remember to update stableVersion.txt when releasing a new stable update.
                                                        // This will notify all Font Manager 2.0 clients that there is an update available.
                                                        // To push the notification, commit and push to the master repository on GitHub.
-        public static string HomeFolder = $@"C:\Users\{Environment.UserName}\Documents\csgo\";
+        public static string HomeFolder = $@"C:\Users\{Environment.UserName}\Documents\";
         public static string FontManagerFolder = HomeFolder + @"Font Manager\";
         public static string FontsFolder = FontManagerFolder + @"Fonts\";
         public static string DataPath = FontManagerFolder + @"Data\";
