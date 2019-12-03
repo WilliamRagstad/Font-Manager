@@ -68,7 +68,7 @@ The add font window looks the same as the main window, but here you can select f
 
 #### 2.1 Developers
 
-Font Manager is originally developed by [Dotch](https://twitter.com/WilliamRagstad), but have had huge help from [Mr. Maxim](https://twitter.com/BananaGamingCS) *(or [BananaGaming](https://www.youtube.com/BananaGaming))* since mid v2.0! Now we have partnered up and will collaborate on the development of Font Manager from now on! I strongly suggest you take a look at his [Youtube](https://www.youtube.com/BananaGaming) for more awesome content and tools for CS:GO!
+Font Manager is developed by [Dotch](https://twitter.com/WilliamRagstad).
 
 #### 2.2 Others
 
