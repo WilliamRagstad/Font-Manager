@@ -201,7 +201,26 @@ namespace CSGO_Font_Manager
         private void setupFontsDirectory(string fontsFile, string fontname, string fontfilename)
         {
             string extension = Path.GetExtension(fontfilename);
-            File.WriteAllText(fontsFile, FileTemplates.fonts_conf(fontname, extension, fontfilename));
+            File.WriteAllText(fontsFile, FileTemplates.fonts_conf(fontname, extension, fontfilename, getCSGOPixelSize().ToString().Replace(",",".")));
+        }
+
+        private float getCSGOPixelSize()
+        {
+            switch (trackBar1.Value)
+            {
+                case 1:
+                    return 0.9f + 0.1f * -2; // 0.7
+                case 2:
+                    return 0.9f + 0.1f * -1; // 0.8
+                case 3:
+                    return 0.9f;             // 0.9
+                case 4:
+                    return 0.9f + 0.1f * 1;  // 1.0
+                case 5:
+                    return 0.9f + 0.1f * 2;  // 1.1
+                default:
+                    return 0.9f;
+            }
         }
 
         #region  External Code

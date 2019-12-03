@@ -31,11 +31,11 @@ A: It depends on if you're running Font Manager as Administrator, in such case, 
 
 
 - **Q: How do I rename fonts in Font Manager?**
-- A: There is no way to do it inside the program itself. Therefore you'll just need to rename the font directory itself inside the following folder: `C:\Users\[USERNAME]\Documents\csgo\Font Manager\Fonts`
+- A: There is no way to do it inside the program itself. Therefore you'll just need to rename the font directory itself inside the following folder: `C:\Users\[USERNAME]\Documents\Font Manager\Fonts`
 
 
 - **Q: How do I uninstall Font Manager?**
 - A: Well, there is not uninstaller. So you must delete the folder and the program yourself:
-  1. Delete the folder: `C:\Users\[USERNAME]\Documents\csgo\Font Manager`
+  1. Delete the folder: `C:\Users\[USERNAME]\Documents\Font Manager`
   2. Delete: `Font Manager.exe`
   3. **Done!** It's all gone :)
