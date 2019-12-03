@@ -288,24 +288,18 @@ namespace CSGO_Font_Manager
                 }
                 else
                 {
-                    //DialogResult dialogResult = MessageBox.Show($"Are you sure you want to remove {listBox1.SelectedItem}?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    //if (dialogResult == DialogResult.Yes)
-                    //{
-                    for (int v = 0; v < listBox1.SelectedItems.Count; v++)
+                    try
                     {
-                        string removeFontName = listBox1.GetItemText(listBox1.SelectedItem);
-                        try
-                        {
-                            Directory.Delete(FontsFolder + removeFontName, true);
-                        }
-                        catch (Exception exception)
-                        {
-                            MessageBox.Show("Failed to remove " + removeFontName + ".\n" + exception.Message,
-                                "Failed to Remove", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        refreshFontList();
+                        Directory.Delete(FontsFolder + listBox1.SelectedItem, true);
                     }
-                    //}
+                    catch (Exception exception)
+                    {
+                        if (!(exception is UnauthorizedAccessException))
+                        {
+                            MessageBox.Show("Failed to remove " + listBox1.SelectedItem + ".\n" + exception.Message, "Failed to Remove", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    refreshFontList();
                 }
             }
         }
@@ -346,6 +340,14 @@ namespace CSGO_Font_Manager
                             AddFont(foldername, file);
                         }
                     }
+                }
+                else
+                {
+                    try
+                    {
+                        Directory.Delete(dir, true);
+                    }
+                    catch { }
                 }
             }
 
@@ -504,6 +506,9 @@ namespace CSGO_Font_Manager
                 {
                     // Copy from C:\Windows\Fonts\[FONTNAME] to FontsFolder
                     if (!fontAlreadyExisted) Directory.CreateDirectory(fileFontDirectory);
+                    
+                    new FileIOPermission(FileIOPermissionAccess.Read, fontFilePath).Demand();
+                    new FileIOPermission(FileIOPermissionAccess.Write, fileFontDirectory + fontFileName).Demand();
                     File.Copy(fontFilePath, fileFontDirectory + fontFileName, true);
 
                     // Initialize the font
