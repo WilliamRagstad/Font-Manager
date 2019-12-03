@@ -40,6 +40,8 @@
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.remove_button = new System.Windows.Forms.Button();
             this.addFont_button = new System.Windows.Forms.Button();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // listBox1
@@ -138,13 +140,14 @@
             this.fontPreview_richTextBox.DetectUrls = false;
             this.fontPreview_richTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fontPreview_richTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(235)))), ((int)(((byte)(244)))));
-            this.fontPreview_richTextBox.Location = new System.Drawing.Point(12, 228);
+            this.fontPreview_richTextBox.Location = new System.Drawing.Point(12, 235);
             this.fontPreview_richTextBox.Name = "fontPreview_richTextBox";
             this.fontPreview_richTextBox.ReadOnly = true;
             this.fontPreview_richTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.fontPreview_richTextBox.Size = new System.Drawing.Size(252, 74);
+            this.fontPreview_richTextBox.Size = new System.Drawing.Size(252, 67);
             this.fontPreview_richTextBox.TabIndex = 18;
             this.fontPreview_richTextBox.Text = "[Font Preview]";
+            this.fontPreview_richTextBox.TextChanged += new System.EventHandler(this.fontPreview_richTextBox_TextChanged);
             // 
             // linkLabel2
             // 
@@ -206,6 +209,18 @@
             this.addFont_button.UseVisualStyleBackColor = false;
             this.addFont_button.Click += new System.EventHandler(this.addFont_button_Click);
             // 
+            // trackBar1
+            // 
+            this.trackBar1.LargeChange = 2;
+            this.trackBar1.Location = new System.Drawing.Point(12, 203);
+            this.trackBar1.Maximum = 5;
+            this.trackBar1.Minimum = 1;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(252, 45);
+            this.trackBar1.TabIndex = 50;
+            this.trackBar1.Value = 3;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -223,6 +238,7 @@
             this.Controls.Add(this.remove_button);
             this.Controls.Add(this.addFont_button);
             this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.trackBar1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -231,6 +247,7 @@
             this.Name = "Form1";
             this.Text = "Font Manager";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -248,6 +265,7 @@
         private System.Windows.Forms.RichTextBox fontPreview_richTextBox;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel3;
+        private System.Windows.Forms.TrackBar trackBar1;
     }
 }
 
