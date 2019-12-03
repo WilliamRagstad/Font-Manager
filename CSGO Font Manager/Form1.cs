@@ -119,6 +119,7 @@ namespace CSGO_Font_Manager
         private void listBox1_Click(object sender, EventArgs e)
         {
             showFontPreview();
+            showFontPreview();
         }
 
         private void showFontPreview()
@@ -171,7 +172,7 @@ namespace CSGO_Font_Manager
             
             
             fontPreview_richTextBox.Visible = true;
-            trackBar1.Visible = true;
+            if (CurrentFormView == FormViews.Main) trackBar1.Visible = true;
         }
 
         private void addFont_button_Click(object sender, EventArgs e)
@@ -194,6 +195,7 @@ namespace CSGO_Font_Manager
                     title_label.Text = "CS:GO Fonts";
                     addFont_button.Visible = true;
                     remove_button.Visible = true;
+                    trackBar1.Visible = true;
                     apply_button.Text = "Apply Selected Font";
                     donate_button.Text = "Donate ♡";
                     donate_button.BackColor = Color.FromArgb(184, 253, 10);
@@ -204,6 +206,7 @@ namespace CSGO_Font_Manager
                     title_label.Text = "System Fonts";
                     addFont_button.Visible = false;
                     remove_button.Visible = false;
+                    trackBar1.Visible = false;
                     apply_button.Text = "Add Selected Font";
                     donate_button.Text = "Cancel";
                     donate_button.BackColor = Color.FromArgb(196, 104, 92);
@@ -495,12 +498,17 @@ namespace CSGO_Font_Manager
                         return;
                     }
                 }
+                // AddFont(filename, fontpath);
 
                 if (fontFilePath != null && File.Exists(fontFilePath))
                 {
                     // Copy from C:\Windows\Fonts\[FONTNAME] to FontsFolder
                     if (!fontAlreadyExisted) Directory.CreateDirectory(fileFontDirectory);
                     File.Copy(fontFilePath, fileFontDirectory + fontFileName, true);
+
+                    // Initialize the font
+                    string fontsConfPath = fileFontDirectory + "fonts.conf";
+                    setupFontsDirectory(fontsConfPath, fontFamily.Name, Path.GetFileName(fontFilePath));
                 
                     // MessageBox.Show("Success! The following font(s) has been added to your library!\n---\n" + selectedFont.Name, "Font(s) Added!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     selectedFont.Dispose();
@@ -512,6 +520,8 @@ namespace CSGO_Font_Manager
                     // Call itself again
                     addFont_button_Click(null, null);
                 }
+
+                refreshFontList();
             }
         }
 
