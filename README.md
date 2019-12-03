@@ -79,7 +79,7 @@ projects have helped develop Font Manager:
 
 #### 2.3 Community
 
-Recieved a lot of improvement, ideas and suggestions from feedback!
+Recieved a lot of improvement, ideas and suggestions from [feedback](https://docs.google.com/forms/d/e/1FAIpQLSfkChgD2T-RYNyfBCRL2EjUQfJ3y8tvPKemGJca2kMU1jV8AQ/viewform)!
 
 ### 3 More
 
