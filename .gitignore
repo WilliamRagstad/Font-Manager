@@ -1,14 +1,73 @@
 
-CSGO Font Manager/Resources/drop your file here.png
-CSGO Font Manager/Resources/drop your font here.png
-CSGO Font Manager/Resources/fadeout_blue.png
-CSGO Font Manager/Resources/fontmanager.png
-CSGO Font Manager/Resources/fontmanager_watermark.png
-CSGO Font Manager/Resources/FontReg.exe
-CSGO Font Manager/Resources/Thumbnail (2).png
-CSGO Font Manager/Resources/Thumbnail.jpg
-CSGO Font Manager/Resources/Thumbnail.png
-CSGO Font Manager/obj/Release/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
-CSGO Font Manager/obj/Release/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
-CSGO Font Manager/obj/Release/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+CSGO Font Manager/Resources/*
+CSGO Font Manager/obj/Release/*
 .vs/*
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Roslyn cache directories
+*.ide/
+
+*_i.c
+*_p.c
+*_i.h
+*.ilk
+*.meta
+*.obj
+*.pch
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*.log
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc
+
+# Visual C++ cache files
+ipch/
+*.aps
+*.ncb
+*.opensdf
+*.sdf
+*.cachefile
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+
+# TFS 2012 Local Workspace
+$tf/
+
+# Guidance Automation Toolkit
+*.gpState
+
+# ReSharper is a .NET coding add-in
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
