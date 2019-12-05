@@ -75,7 +75,7 @@ Font Manager is developed by [Dotch](https://twitter.com/WilliamRagstad).
 Thanks to the following people whose
 projects have helped develop Font Manager:
 
-- Kliu - developer of [FontReg](http://code.kliu.org/misc/fontreg/) [source code here](http://code.kliu.org/misc/fontreg/).
+- Kliu - developer of FontReg ([source code here](http://code.kliu.org/misc/fontreg/)).
 - BananaGaming ([Maxim](https://twitter.com/BananaGamingCS)) - For his input & suggestions on how to improve the layout, design and simplicity for Version 3.0!🎉
 
 #### 2.3 Community
