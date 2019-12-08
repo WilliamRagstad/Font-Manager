@@ -71,3 +71,6 @@ $tf/
 _ReSharper*/
 *.[Rr]e[Ss]harper
 *.DotSettings.user
+*.pfx
+*.exe
+CSGO Font Manager/obj/Debug/CSGO Font Manager.exe
