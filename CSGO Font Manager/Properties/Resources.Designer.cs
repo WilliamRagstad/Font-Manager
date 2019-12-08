@@ -123,16 +123,6 @@ namespace CSGO_Font_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static byte[] FontManagerUpdater {
-            get {
-                object obj = ResourceManager.GetObject("FontManagerUpdater", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
         public static byte[] FontReg {
             get {
                 object obj = ResourceManager.GetObject("FontReg", resourceCulture);

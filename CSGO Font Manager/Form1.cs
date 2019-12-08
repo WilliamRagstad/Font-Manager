@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Text;
@@ -16,27 +17,27 @@ namespace CSGO_Font_Manager
 {
     public partial class Form1 : Form
     {
-        public static string VersionNumber = "3.0";    // Remember to update stableVersion.txt when releasing a new stable update.
+        public static string VersionNumber = "3.1";    // Remember to update stableVersion.txt when releasing a new stable update.
                                                        // This will notify all Font Manager 2.0 clients that there is an update available.
                                                        // To push the notification, commit and push to the master repository on GitHub.
+        private readonly string CurrentVersion = "https://raw.githubusercontent.com/WilliamRagstad/Font-Manager/master/CSGO%20Font%20Manager/stableVersion.txt";
+        
         public static string HomeFolder = $@"C:\Users\{Environment.UserName}\Documents\";
         public static string FontManagerFolder = HomeFolder + @"Font Manager\";
         public static string FontsFolder = FontManagerFolder + @"Fonts\";
         public static string DataPath = FontManagerFolder + @"Data\";
-        public static string UpdaterPath = DataPath + "FontManagerUpdater.exe";
-        public static string FirstStartupPath = DataPath + "firstStartup.txt";
+        private string SettingsFile = DataPath + "settings.json";
 
-        protected static string UpdaterToken = "cf38519aeddfb438e69e1f8a4b1412dd";
-
-        public static string csgoFolder = null;
+        public static Settings Settings;
+        public static JsonManager<Settings> SettingsManager;
+        
         public static string csgoFontsFolder = null;
-        public static bool isFirstStartup = true;
 
         public static string defaultFontName = "Default Font";
-
         public static string fontPreviewText = "The quick brown fox jumps over the lazy dog. 100 - + / = 23.5";
 
         public static FormViews CurrentFormView = FormViews.Main;
+        private static PrivateFontCollection _privateFontCollection = new PrivateFontCollection();
 
         public enum FormViews
         {
@@ -53,24 +54,15 @@ namespace CSGO_Font_Manager
         {
             AutoFocusRunningInstance();
             version_label.Text = "Version " + VersionNumber;
-
+            
             SetupFolderStructure();
+
+            SettingsManager = new JsonManager<Settings>(SettingsFile);
+            Settings = SettingsManager.Load();
+
             checkForUpdates();
             LoadCSGOFolder();
             refreshFontList();
-
-            // Check if first startup
-            if (File.Exists(FirstStartupPath))
-            {
-                isFirstStartup = File.ReadAllText(FirstStartupPath) != "1";
-                File.WriteAllText(FirstStartupPath, "1");
-            }
-            else
-            {
-                isFirstStartup = true;
-                File.WriteAllText(FirstStartupPath, "1");
-            }
-
 
             // Update all texts
             switchView(FormViews.Main);
@@ -83,29 +75,52 @@ namespace CSGO_Font_Manager
 
         private void checkForUpdates()
         {
-            // Extract the updater binary
+            string versionPattern = @"(\d+\.)(\d+\.?)+";
+
+            // Get new version
+            string newVersion = null;
             try
             {
-                if (!File.Exists(UpdaterPath)) File.WriteAllBytes(UpdaterPath, Properties.Resources.FontManagerUpdater);
+                var webRequest = WebRequest.Create(CurrentVersion);
+
+                using (var response = webRequest.GetResponse())
+                using(var content = response.GetResponseStream())
+                using(var reader = new StreamReader(content)){
+                    newVersion = reader.ReadToEnd().Replace("\n","");
+
+
+                }
             }
-            catch { }
-
-            string programPath = System.Reflection.Assembly.GetEntryAssembly().Location; // Get the location where the program (.exe) was started from
-            ProcessStartInfo psi = new ProcessStartInfo(UpdaterPath, $"\"{UpdaterToken}\" \"{VersionNumber}\" \"{programPath}\"");
-            psi.CreateNoWindow = true;
-            psi.UseShellExecute = false;
-            psi.RedirectStandardOutput = true;
-            psi.RedirectStandardError = true; 
-            var p = Process.Start(psi);
-            p.WaitForExit();
-            string response = p.StandardOutput.ReadToEnd();
-            string errors = p.StandardError.ReadToEnd();
-
-            if (!string.IsNullOrWhiteSpace(errors))
+            catch (Exception e)
             {
-                // throw new Exception(errors);
+                // User is probably offline
+                Console.WriteLine(e);
             }
 
+            if (!Regex.IsMatch(newVersion, versionPattern))
+            {
+                Console.WriteLine("New version number is in an invalid format.");
+                return;
+            }
+                        
+            string rawLocalVersion = VersionNumber.Remove(VersionNumber.IndexOf('.') ,1).Replace(".",",").Split(' ')[0];  // Split in case version
+            string rawNewVersion = newVersion.Remove(newVersion.IndexOf('.') ,1).Replace(".",",").Split(' ')[0];        // number contains "2.2 Alpha"
+            // Convert to a comparable number
+            float localVersionRepresentation = float.Parse(rawLocalVersion);
+            float newVersionRepresentation   = float.Parse(rawNewVersion);
+
+            if (VersionNumber.Trim() != newVersion.Trim() && newVersionRepresentation > localVersionRepresentation)
+            {
+                // New updated version is released
+
+                if (MessageBox.Show(
+                    $"Version {newVersion} is available to download from the official GitHub Repo!\n\n" +
+                    "Do you want to continue getting update notifications?",
+                    "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
+                {
+                    Settings.BlockNoficationsForVersion = VersionNumber;
+                }
+            }
         }
 
         private static void SetupFolderStructure()
@@ -177,9 +192,10 @@ namespace CSGO_Font_Manager
 
         private void addFont_button_Click(object sender, EventArgs e)
         {
-            if (isFirstStartup)
+            if (Settings.showProTips)
             {
                 MessageBox.Show("Protip: If you want you can also just drag-and-drop fonts inside the font list.", "Drag and Drop!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Settings.showProTips = false;
             }
 
             switchView(FormViews.AddSystemFont);
@@ -336,7 +352,6 @@ namespace CSGO_Font_Manager
                         if (IsFontExtension(Path.GetExtension(file)))
                         {
                             // _privateFontCollection.AddFontFile(file);
-                
                             AddFont(foldername, file);
                         }
                     }
@@ -385,7 +400,7 @@ namespace CSGO_Font_Manager
                 {
 
                     //Get the csgo path (home folder...) if data file not found...
-                    if (csgoFolder != null)
+                    if (Settings.CSGOPath != null)
                     {
                         // Make sure the folders exists
                         string csgoConfD = csgoFontsFolder + "\\conf.d";
@@ -535,8 +550,8 @@ namespace CSGO_Font_Manager
             string csgoDataPath = DataPath + @"\csgopath.dat";
             if (File.Exists(csgoDataPath))
             {
-                csgoFolder = File.ReadAllText(csgoDataPath);
-                csgoFontsFolder = csgoFolder + @"\csgo\panorama\fonts";
+                Settings.CSGOPath = File.ReadAllText(csgoDataPath);
+                csgoFontsFolder = Settings.CSGOPath + @"\csgo\panorama\fonts";
             }
             else
             {
@@ -610,8 +625,6 @@ namespace CSGO_Font_Manager
 
         #region Font Management
 
-        private static PrivateFontCollection _privateFontCollection = new PrivateFontCollection();
-
         public static FontFamily GetFontFamilyByName(string name)   // name = LemonMilk
         {
             // This is probably unesessary
@@ -624,8 +637,6 @@ namespace CSGO_Font_Manager
             {
                 return StringSimilarity(name, x.Name) > 0.75f;
             });
-            
-            return null;
         }
 
         private static float StringSimilarity(string a, string b)
@@ -690,7 +701,7 @@ namespace CSGO_Font_Manager
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (MessageBox.Show("This will only restore the path to Counter Strike: Global Offensive and restore utility programs (in case they need to be updated). If you want to delete all fonts, you must do so through the program.\n\n" + 
-                                "Current CS:GO Folder: " + csgoFolder + "\n\nAre you sure you want to reset Font Manager?", "Reset?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                                "Current CS:GO Folder: " + Settings.CSGOPath + "\n\nAre you sure you want to reset Font Manager?", "Reset?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 Directory.Delete(DataPath, true);
                 LoadCSGOFolder();
@@ -731,6 +742,12 @@ namespace CSGO_Font_Manager
         private void fontPreview_richTextBox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Save settings
+            SettingsManager.Save(Settings);
         }
     }
 }
