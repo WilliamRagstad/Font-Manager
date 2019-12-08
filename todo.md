@@ -8,7 +8,7 @@ Here is all the things we are working on to add in future releases!
 * Change font scaling.
 * Remove autoupdate exe
 * Notify about new updates beside version number
-* 
+* Make folders in Documents more compact.
 
 ### Maybe
 
