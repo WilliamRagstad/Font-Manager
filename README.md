@@ -21,11 +21,13 @@ View the changelog [here](changelog.md).
 
 ## Videos
 
+<div align=center>
+
 [![BananaGaming](https://img.youtube.com/vi/3xToNTtdmME/0.jpg)](https://www.youtube.com/watch?v=3xToNTtdmME)
 
 [![Tutorial](https://img.youtube.com/vi/MhOnvkEIy1k/0.jpg)](https://www.youtube.com/watch?v=MhOnvkEIy1k)
 
-
+</div>
 
 
 
