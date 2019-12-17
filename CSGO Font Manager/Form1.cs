@@ -636,16 +636,18 @@ namespace CSGO_Font_Manager
         public static FontFamily GetFontFamilyByName(string name)   // name = LemonMilk
         {
             // This is probably unesessary
-            foreach (FontFamily fontFamily in System.Drawing.FontFamily.Families)
+            foreach (FontFamily fontFamily in FontFamily.Families)
             {
-                if (fontFamily.Name == name) return fontFamily;
+                if (SimplifyName(fontFamily.Name) == SimplifyName(name)) return fontFamily;
             }
             
             return _privateFontCollection.Families.FirstOrDefault(x => // x = Lemon/Milk
             {
-                return StringSimilarity(name, x.Name) > 0.75f;
+                return StringSimilarity(SimplifyName(name), SimplifyName(x.Name)) > 0.75f;
             });
         }
+
+        private static string SimplifyName(string str) => str.Replace(" ", "").ToLower();
 
         private static float StringSimilarity(string a, string b)
         {
