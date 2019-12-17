@@ -15,8 +15,6 @@ It features a "Drag-and-Drop" system which allows you to add new fonts in second
 - One click font removal 
 - **Support for the new panorama update!**
 
-View the changelog [here](changelog.md).
-
 >  Just take me to the [installation](#Install)...
 
 ## Videos
