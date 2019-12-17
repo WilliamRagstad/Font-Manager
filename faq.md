@@ -3,7 +3,7 @@ FAQ
 
 - **Q: Will I risk being VAC banned?**
 
-- A: Short answer: **No**.
+- A: Short answer: **No**
 
   Long explanation: 
 
