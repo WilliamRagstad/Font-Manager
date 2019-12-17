@@ -15,14 +15,17 @@ It features a "Drag-and-Drop" system which allows you to add new fonts in second
 - One click font removal 
 - **Support for the new panorama update!**
 
-View the changelog [here](changelog.md).
-
 >  Just take me to the [installation](#Install)...
 
 ## Videos
 
+<div align=center>
+
+[![BananaGaming](https://img.youtube.com/vi/3xToNTtdmME/0.jpg)](https://www.youtube.com/watch?v=3xToNTtdmME)
+
 [![Tutorial](https://img.youtube.com/vi/MhOnvkEIy1k/0.jpg)](https://www.youtube.com/watch?v=MhOnvkEIy1k)
 
+</div>
 
 
 
@@ -76,7 +79,7 @@ Thanks to the following people whose
 projects have helped develop Font Manager:
 
 - Kliu - developer of FontReg ([source code here](http://code.kliu.org/misc/fontreg/)).
-- BananaGaming ([Maxim](https://twitter.com/BananaGamingCS)) - For his input & suggestions on how to improve the layout, design and simplicity for Version 3.0!🎉
+- BananaGaming ([Maxim](https://twitter.com/BananaGamingCS)) - For his input & suggestions on how to improve the design for Version 3.0!🎉
 
 #### 2.3 Community
 

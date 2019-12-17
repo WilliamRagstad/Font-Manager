@@ -134,7 +134,7 @@ namespace CSGO_Font_Manager
                     {
                         Directory.CreateDirectory(fileFontDirectory);
                         File.Copy(filepath, fileFontDirectory + rawfilename, true);
-                        fontpath = filepath;
+                        fontpath = fileFontDirectory + rawfilename;
                     }
                     else
                     {
