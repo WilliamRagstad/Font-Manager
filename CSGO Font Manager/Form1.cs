@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -17,6 +16,7 @@ namespace CSGO_Font_Manager
 {
     public partial class Form1 : Form
     {
+        public const string AssemblyVersion = "3.1.0.2";
         public static string VersionNumber = "3.1";    // Remember to update stableVersion.txt when releasing a new stable update.
                                                        // This will notify all Font Manager 2.0 clients that there is an update available.
                                                        // To push the notification, commit and push to the master repository on GitHub.
@@ -47,6 +47,7 @@ namespace CSGO_Font_Manager
 
         public Form1()
         {
+            AppDomain.CurrentDomain.AssemblyResolve += LocateAssemblyLibrary.CurrentDomain_AssemblyResolve;
             InitializeComponent();
         }
 
@@ -182,7 +183,14 @@ namespace CSGO_Font_Manager
                     fontFamily = new FontFamily(selectedFontName);
                 }
 
-                fontPreview_richTextBox.Font = new Font(fontFamily, 14);
+                try
+                {
+                    fontPreview_richTextBox.Font = new Font(fontFamily, 14);
+                }
+                catch
+                {
+                    fontPreview_richTextBox.Visible = false; // Something went wrong, don't show textbox
+                }
             }
             
             
