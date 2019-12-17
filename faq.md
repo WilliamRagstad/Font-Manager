@@ -28,7 +28,7 @@ Font Manager should warn of this when installing/applying fonts. You can fix it 
 
 
 - **Q: Why can't I drag and drop anymore?**
-A: It depends on if you're running Font Manager as Administrator, in such case, restart the program with user privileges.
+A: It depends on if you're running Font Manager as Administrator, in such case, restart the program with user (normal) privileges.
 
 
 - **Q: How do I rename fonts in Font Manager?**
