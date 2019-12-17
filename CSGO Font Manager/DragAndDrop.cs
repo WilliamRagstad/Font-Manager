@@ -36,7 +36,7 @@ namespace CSGO_Font_Manager
 
                     string fontpath = null;
 
-                    string fileFontDirectory = FontsFolder + sanitizeFilename(filename);
+                    string fileFontDirectory = FontsFolder + sanitizeFilename(filename) + @"\";
 
                     if (Directory.Exists(fileFontDirectory))
                     {
@@ -133,7 +133,7 @@ namespace CSGO_Font_Manager
                     else if (IsFontExtension(extension))
                     {
                         Directory.CreateDirectory(fileFontDirectory);
-                        File.Copy(filepath, fileFontDirectory + rawfilename + extension, true);
+                        File.Copy(filepath, fileFontDirectory + rawfilename, true);
                         fontpath = filepath;
                     }
                     else
