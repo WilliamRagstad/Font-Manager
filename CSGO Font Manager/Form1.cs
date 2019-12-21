@@ -11,6 +11,7 @@ using System.Security.Permissions;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace CSGO_Font_Manager
 {
@@ -589,44 +590,44 @@ namespace CSGO_Font_Manager
             }
         }
 
+        // https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration#Locating_CS:GO_Install_Directory
         private static string tryLocatingCSGOFolder()
         {
-            string csgoFolder = null;
-            DriveInfo[] allDrives = DriveInfo.GetDrives();
+            // Locate the Steam installation directory
+            string steamDir = (string) Registry.GetValue(@"HKEY_CURRENT_USER\Software\Valve\Steam", "SteamPath", ""),
+                   libsFile = steamDir + @"\steamapps\libraryfolders.vdf";
 
-            string p_programFiles = @"Program[\x20]*Files";
-            string p_steam = @"steam";
+            Regex regex = new Regex("\"\\d+\".*\"(.*?)\"", RegexOptions.Compiled);
 
-            foreach (DriveInfo drive in allDrives)
+            List<string> libraries = new List<string> { steamDir.Replace('/', '\\') };
+
+            // Find all Steam game libraries
+            if (File.Exists(libsFile))
             {
-                if (drive.IsReady)
+                foreach (string line in File.ReadAllLines(libsFile))
                 {
-                    foreach (string subDirectory_drive in Directory.GetDirectories(drive.Name))
+                    foreach (Match match in regex.Matches(line))
                     {
-                        string directoryName_drive = Path.GetFileName(subDirectory_drive);
-                        if (Regex.IsMatch(directoryName_drive, p_programFiles, RegexOptions.IgnoreCase))
+                        if (match.Success && match.Groups.Count != 0)
                         {
-                            // Search its sub folders for the Steam folder
-                            foreach (string subDirectory_progfiles in Directory.GetDirectories(subDirectory_drive))
-                            {
-                                string directoryName_progfiles = Path.GetFileName(subDirectory_progfiles);
-                                if (Regex.IsMatch(directoryName_progfiles, p_steam, RegexOptions.IgnoreCase))
-                                {
-                                    // Steam folder is found, check if csgo.exe exists inside that folder
-                                    string csgo = subDirectory_progfiles + @"\steamapps\common\Counter-Strike Global Offensive\";
-                                    if (Directory.Exists(csgo))
-                                    {
-                                        csgoFolder = csgo;
-                                        return csgoFolder;
-                                    }
-                                }
-                            }
+                            libraries.Add(match.Groups[1].Value.Replace("\\\\", "\\"));
+                            break;
                         }
                     }
                 }
             }
 
-            return csgoFolder;
+            // Search them for the CS:GO installation
+            foreach (string lib in libraries)
+            {
+                string csgoDir = lib + @"\steamapps\common\Counter-Strike Global Offensive";
+                if (Directory.Exists(csgoDir))
+                {
+                    return csgoDir;
+                }
+            }
+
+            return null;
         }
 
 
