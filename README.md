@@ -2,8 +2,6 @@
 
 <div align=center>
  <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/WilliamRagstad/Font-Manager">
- <br>
- <img alt="GitHub Releases" src="https://img.shields.io/github/downloads/WilliamRagstad/Font-Manager/v3.1/total">
  <img alt="GitHub All Releases" src="https://img.shields.io/github/downloads/WilliamRagstad/Font-Manager/total">
 </div>
 
