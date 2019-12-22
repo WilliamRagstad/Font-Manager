@@ -7,9 +7,7 @@
 
 
 > ## Install
-> [Direct download](https://github.com/WilliamRagstad/Font-Manager/releases/latest/download/FontManager.exe)
-> Or
-> [View all releases](https://github.com/WilliamRagstad/Font-Manager/releases ).
+> [Direct download](https://github.com/WilliamRagstad/Font-Manager/releases/latest/download/FontManager.exe) the latest version, or view all releases[here](https://github.com/WilliamRagstad/Font-Manager/releases).
 
 
 # Introduction
