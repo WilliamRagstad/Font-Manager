@@ -1,7 +1,7 @@
 ![Font Manager Logo](https://github.com/WilliamRagstad/Font-Manager/blob/master/CSGO%20Font%20Manager/Resources/fontmanager.png?raw=true)
 
 <div align=center>
- ![GitHub All Releases](https://img.shields.io/github/downloads/WilliamRagstad/Font-Manager/total)
+ <img alt="GitHub All Releases" src="https://img.shields.io/github/downloads/WilliamRagstad/Font-Manager/total">
 </div>
 
 # Introduction
