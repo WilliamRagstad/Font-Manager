@@ -5,6 +5,11 @@
  <img alt="GitHub All Releases" src="https://img.shields.io/github/downloads/WilliamRagstad/Font-Manager/total">
 </div>
 
+
+> ## Install
+> [Download the latest version from here](https://github.com/WilliamRagstad/Font-Manager/releases ).
+
+
 # Introduction
 
 **Font Manager** is a software designed to simplify switching between different custom fonts for CS:GO.
@@ -32,13 +37,6 @@ It features a "Drag-and-Drop" system which allows you to add new fonts in second
 (Outdated)
 
 </div>
-
-
-
-
-> ## Install
-> [Download the latest version from here](https://github.com/WilliamRagstad/Font-Manager/releases ).
-
 
 
 
