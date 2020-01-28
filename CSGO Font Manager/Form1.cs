@@ -591,6 +591,7 @@ namespace CSGO_Font_Manager
         }
 
         // https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration#Locating_CS:GO_Install_Directory
+        // Improved csgo installation detection by bernieplayshd #14
         private static string tryLocatingCSGOFolder()
         {
             // Locate the Steam installation directory
