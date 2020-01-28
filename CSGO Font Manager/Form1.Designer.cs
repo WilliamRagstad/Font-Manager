@@ -1,4 +1,6 @@
-﻿namespace CSGO_Font_Manager
+﻿using System;
+
+namespace CSGO_Font_Manager
 {
     partial class Form1
     {
@@ -41,6 +43,7 @@
             this.remove_button = new System.Windows.Forms.Button();
             this.addFont_button = new System.Windows.Forms.Button();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.search_textBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,7 +108,7 @@
             this.donate_button.Name = "donate_button";
             this.donate_button.Size = new System.Drawing.Size(252, 29);
             this.donate_button.TabIndex = 11;
-            this.donate_button.Text = "Donate ♡";
+            this.donate_button.Text = "Support me 🎉";
             this.donate_button.UseVisualStyleBackColor = false;
             this.donate_button.Click += new System.EventHandler(this.donate_button_Click);
             // 
@@ -140,14 +143,13 @@
             this.fontPreview_richTextBox.DetectUrls = false;
             this.fontPreview_richTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fontPreview_richTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(235)))), ((int)(((byte)(244)))));
-            this.fontPreview_richTextBox.Location = new System.Drawing.Point(12, 235);
+            this.fontPreview_richTextBox.Location = new System.Drawing.Point(12, 228);
             this.fontPreview_richTextBox.Name = "fontPreview_richTextBox";
             this.fontPreview_richTextBox.ReadOnly = true;
             this.fontPreview_richTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.fontPreview_richTextBox.Size = new System.Drawing.Size(252, 67);
+            this.fontPreview_richTextBox.Size = new System.Drawing.Size(252, 74);
             this.fontPreview_richTextBox.TabIndex = 18;
             this.fontPreview_richTextBox.Text = "[Font Preview]";
-            this.fontPreview_richTextBox.TextChanged += new System.EventHandler(this.fontPreview_richTextBox_TextChanged);
             // 
             // linkLabel2
             // 
@@ -213,13 +215,25 @@
             // 
             this.trackBar1.LargeChange = 2;
             this.trackBar1.Location = new System.Drawing.Point(12, 203);
-            this.trackBar1.Maximum = 5;
+            this.trackBar1.Maximum = 9;
             this.trackBar1.Minimum = 1;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(252, 45);
             this.trackBar1.TabIndex = 50;
-            this.trackBar1.Value = 3;
+            this.trackBar1.Value = 5;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // search_textBox
+            // 
+            this.search_textBox.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.search_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.search_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.search_textBox.ForeColor = System.Drawing.SystemColors.Info;
+            this.search_textBox.Location = new System.Drawing.Point(133, 9);
+            this.search_textBox.Name = "search_textBox";
+            this.search_textBox.Size = new System.Drawing.Size(131, 22);
+            this.search_textBox.TabIndex = 51;
+            this.search_textBox.TextChanged += new System.EventHandler(this.search_textBox_TextChanged);
             // 
             // Form1
             // 
@@ -239,6 +253,7 @@
             this.Controls.Add(this.addFont_button);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.trackBar1);
+            this.Controls.Add(this.search_textBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -246,9 +261,7 @@
             this.MinimumSize = new System.Drawing.Size(200, 350);
             this.Name = "Form1";
             this.Text = "Font Manager";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -267,6 +280,6 @@
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.TextBox search_textBox;
     }
 }
-
