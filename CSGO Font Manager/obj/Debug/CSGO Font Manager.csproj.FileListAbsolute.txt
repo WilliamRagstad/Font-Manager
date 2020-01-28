@@ -5,7 +5,6 @@ D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\A
 D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\ActiproSoftware.SyntaxEditor.WinForms.dll
 D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\ActiproSoftware.Shared.WinForms.xml
 D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\ActiproSoftware.SyntaxEditor.WinForms.xml
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.csprojResolveAssemblyReference.cache
 D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO_Font_Manager.Form1.resources
 D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO_Font_Manager.Properties.Resources.resources
 D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.csproj.GenerateResource.cache
