@@ -1,17 +1,16 @@
-## Unreleased `3.0.1` 
+## Todo
 
-### Added
+Here is all the things we are working on to add in future releases!
 
-* Highlight current csgo font.
+* Highlight currently active CS:GO font
+* Collect all settings into one JSON file
+* Autofocus on already running Font Manager incase a new instance is started
+* Change font scaling
+* Remove autoupdate exe
+* Notify about new updates beside version number
+* Make folders in Documents more compact
+* Autodetect outdated CS:GO path
 
-### Changed
+### Maybe
 
 - New UI in DevExpress (?)
-
-* JSON data file
-
-### Fixed
-
-* Adding font files will check if there is a folder containing that font file already.
-  
-

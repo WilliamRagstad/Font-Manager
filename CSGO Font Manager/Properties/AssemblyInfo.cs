@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CSGO Font Manager 2.0")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("CSGO Font Manager")]
+[assembly: AssemblyDescription("A font management tool for CS:GO")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CSGO Font Manager 2.0")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCompany("Dotch")]
+[assembly: AssemblyProduct("CSGO Font Manager")]
+[assembly: AssemblyCopyright("Copyright © 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("bc394694-0adc-43a7-878e-c129d28e1142")]
+[assembly: Guid("bc394594-0adc-43a7-878d-c129d28e1143")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion(CSGO_Font_Manager.Form1.AssemblyVersion)]
+[assembly: AssemblyFileVersion(CSGO_Font_Manager.Form1.AssemblyVersion)]

@@ -1,5 +1,14 @@
 ![Font Manager Logo](https://github.com/WilliamRagstad/Font-Manager/blob/master/CSGO%20Font%20Manager/Resources/fontmanager.png?raw=true)
 
+<div align=center>
+ <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/WilliamRagstad/Font-Manager">
+ <img alt="GitHub All Releases" src="https://img.shields.io/github/downloads/WilliamRagstad/Font-Manager/total">
+</div>
+
+
+> ## Install
+> [Direct download](https://github.com/WilliamRagstad/Font-Manager/releases/latest/download/FontManager.exe) the latest version, or view all releases [here](https://github.com/WilliamRagstad/Font-Manager/releases).
+
 
 # Introduction
 
@@ -15,21 +24,19 @@ It features a "Drag-and-Drop" system which allows you to add new fonts in second
 - One click font removal 
 - **Support for the new panorama update!**
 
-View the changelog [here](changelog.md).
-
 >  Just take me to the [installation](#Install)...
 
 ## Videos
 
+<div align=center>
+
+[![BananaGaming](https://img.youtube.com/vi/3xToNTtdmME/0.jpg)](https://www.youtube.com/watch?v=3xToNTtdmME)
+
 [![Tutorial](https://img.youtube.com/vi/MhOnvkEIy1k/0.jpg)](https://www.youtube.com/watch?v=MhOnvkEIy1k)
 
+(Outdated)
 
-
-
-
-> ## Install
-> [Download the latest version from here](https://github.com/WilliamRagstad/Font-Manager/releases ).
-
+</div>
 
 
 
@@ -68,14 +75,19 @@ The add font window looks the same as the main window, but here you can select f
 
 #### 2.1 Developers
 
-Font Manager is originally developed by [Dotch](https://twitter.com/WilliamRagstad), but have had huge help from [Mr. Maxim](https://twitter.com/BananaGamingCS) *(or [BananaGaming](https://www.youtube.com/BananaGaming))* since mid v2.0! Now we have partnered up and will collaborate on the development of Font Manager from now on! I strongly suggest you take a look at his [Youtube](https://www.youtube.com/BananaGaming) for more awesome content and tools for CS:GO!
+Font Manager is developed by [Dotch](https://twitter.com/WilliamRagstad).
 
 #### 2.2 Others
 
 Thanks to the following people whose
 projects have helped develop Font Manager:
 
-- Kliu - developer of [FontReg](http://code.kliu.org/misc/fontreg/).
+- Kliu - developer of FontReg ([source code here](http://code.kliu.org/misc/fontreg/)).
+- BananaGaming ([Maxim](https://twitter.com/BananaGamingCS)) - For his input & suggestions on how to improve the design for Version 3.0!🎉
+
+#### 2.3 Community
+
+Recieved a lot of improvement, ideas and suggestions from [feedback](https://docs.google.com/forms/d/e/1FAIpQLSfkChgD2T-RYNyfBCRL2EjUQfJ3y8tvPKemGJca2kMU1jV8AQ/viewform)!
 
 ### 3 More
 

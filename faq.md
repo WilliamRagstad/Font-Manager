@@ -3,7 +3,8 @@ FAQ
 
 - **Q: Will I risk being VAC banned?**
 
-- A: Short answer: **No**.
+- A: Short answer: **No**
+
   Long explanation: 
 
   - *"Certain files are VAC protected. If you modify these files, you can be VAC banned. But you can change things like the mini-map graphics without being banned. Generally speaking, players can be banned for making changes to core game files in CSGO. There are also numerous guides on Steam CSGO community hub that detail how to change various parts of the UI including fonts. I doubt that it would have got 1000 upvotes if it was telling players to do something that would get them VAC banned."* - **BossGalaga**'s answer to the question in [this discussion](https://steamcommunity.com/discussions/forum/9/135513901704720033/).
@@ -27,15 +28,15 @@ Font Manager should warn of this when installing/applying fonts. You can fix it 
 
 
 - **Q: Why can't I drag and drop anymore?**
-A: It depends on if you're running Font Manager as Administrator, in such case, restart the program with user privileges.
+A: It depends on if you're running Font Manager as Administrator, in such case, restart the program with user (normal) privileges.
 
 
 - **Q: How do I rename fonts in Font Manager?**
-- A: There is no way to do it inside the program itself. Therefore you'll just need to rename the font directory itself inside the following folder: `C:\Users\[USERNAME]\Documents\csgo\Font Manager\Fonts`
+- A: There is no way to do it inside the program itself. Therefore you'll just need to rename the font directory itself inside the following folder: `C:\Users\[USERNAME]\Documents\Font Manager\Fonts`
 
 
 - **Q: How do I uninstall Font Manager?**
 - A: Well, there is not uninstaller. So you must delete the folder and the program yourself:
-  1. Delete the folder: `C:\Users\[USERNAME]\Documents\csgo\Font Manager`
+  1. Delete the folder: `C:\Users\[USERNAME]\Documents\Font Manager`
   2. Delete: `Font Manager.exe`
   3. **Done!** It's all gone :)
