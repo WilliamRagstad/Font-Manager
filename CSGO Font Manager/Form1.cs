@@ -18,8 +18,8 @@ namespace CSGO_Font_Manager
 {
     public partial class Form1 : Form
     {
-        public const string AssemblyVersion = "3.1.0.2";
-        public static string VersionNumber = "3.1";    // Remember to update stableVersion.txt when releasing a new stable update.
+        public const string AssemblyVersion = "3.2.0.0";
+        public static string VersionNumber = "3.2";    // Remember to update stableVersion.txt when releasing a new stable update.
                                                        // This will notify all Font Manager 2.0 clients that there is an update available.
                                                        // To push the notification, commit and push to the master repository on GitHub.
         private readonly string CurrentVersion = "https://raw.githubusercontent.com/WilliamRagstad/Font-Manager/master/CSGO%20Font%20Manager/stableVersion.txt";
