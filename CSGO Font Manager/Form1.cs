@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
+using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -127,10 +128,47 @@ namespace CSGO_Font_Manager
 
         private static void SetupFolderStructure()
         {
-            Directory.CreateDirectory(FontsFolder);
-            Directory.CreateDirectory(FontManagerFolder);
-            Directory.CreateDirectory(HomeFolder);
-            Directory.CreateDirectory(DataPath);
+            new FileIOPermission(FileIOPermissionAccess.Write, HomeFolder).Demand();
+            new FileIOPermission(FileIOPermissionAccess.Write, FontManagerFolder).Demand();
+            new FileIOPermission(FileIOPermissionAccess.Write, FontsFolder).Demand();
+            new FileIOPermission(FileIOPermissionAccess.Write, DataPath).Demand();
+            
+            ObtainFolderPermission(HomeFolder);
+            ObtainFolderPermission(FontManagerFolder);
+
+            try
+            {
+                Directory.CreateDirectory(HomeFolder);
+                Directory.CreateDirectory(FontManagerFolder);
+                Directory.CreateDirectory(FontsFolder);
+                Directory.CreateDirectory(DataPath);
+            }
+            catch
+            {
+                System.Windows.Forms.DialogResult dr = MessageBox.Show("Font Manager does not seem to have permission to the document directory!", "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                if (dr == DialogResult.Retry) SetupFolderStructure();
+            }
+        }
+
+        public static void ObtainFolderPermission(string folderPath)
+        {
+            var directoryInfo = new DirectoryInfo(folderPath);
+            var directorySecurity = directoryInfo.GetAccessControl();
+            var currentUserIdentity = System.Security.Principal.WindowsIdentity.GetCurrent();
+
+            foreach (IdentityReference group in currentUserIdentity.Groups)
+            {
+                var fileSystemRule = new System.Security.AccessControl.FileSystemAccessRule(group,
+                    System.Security.AccessControl.FileSystemRights.Read,
+                    System.Security.AccessControl.InheritanceFlags.ObjectInherit |
+                    System.Security.AccessControl.InheritanceFlags.ContainerInherit,
+                    System.Security.AccessControl.PropagationFlags.None,
+                    System.Security.AccessControl.AccessControlType.Allow);
+          
+                directorySecurity.AddAccessRule(fileSystemRule);
+            }
+            
+            directoryInfo.SetAccessControl(directorySecurity);
         }
         
         private void listBox1_Click(object sender, EventArgs e)
@@ -274,6 +312,8 @@ namespace CSGO_Font_Manager
                 .Replace("?", "")
                 .Replace("&", "")
                 .Replace("\"", "")
+                .Replace("/", "")
+                .Replace("\\", "")
                 .Replace("!", "")
                 .Replace("(", "")
                 .Replace(")", "");
@@ -497,10 +537,10 @@ namespace CSGO_Font_Manager
 
                 string fontFilePath = null;
 
-                string fontFileName = GetSystemFontFileName(selectedFont);
+                string fontFileName = GetSystemFontFileName(selectedFont); // These return null verry often
                 if (fontFileName == null)
                 {
-                    List<string> matchedFontFileNames = GetFilesForFont(selectedFont.Name).ToList();
+                    List<string> matchedFontFileNames = GetFilesForFont(selectedFont.Name).ToList(); // These return null verry often
                     if (matchedFontFileNames.Count > 0)
                     {
                         string[] mffn = matchedFontFileNames[0].Split('\\');
@@ -546,7 +586,7 @@ namespace CSGO_Font_Manager
                     string fontsConfPath = fileFontDirectory + "fonts.conf";
                     setupFontsDirectory(fontsConfPath, fontFamily.Name, Path.GetFileName(fontFilePath));
                 
-                    // MessageBox.Show("Success! The following font(s) has been added to your library!\n---\n" + selectedFont.Name, "Font(s) Added!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Success! The following font(s) has been added to your library!\n---\n" + selectedFont.Name, "Font(s) Added!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     selectedFont.Dispose();
                     switchView(FormViews.Main);
                 }
