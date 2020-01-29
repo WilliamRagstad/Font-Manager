@@ -116,26 +116,10 @@ namespace CSGO_Font_Manager
             {
                 // New updated version is released
 
-            if (!Regex.IsMatch(newVersion, versionPattern))
-            {
-                Console.WriteLine("New version number is in an invalid format.");
-                return;
-            }
-                        
-            string rawLocalVersion = VersionNumber.Remove(VersionNumber.IndexOf('.') ,1).Replace(".",",").Split(' ')[0];  // Split in case version
-            string rawNewVersion = newVersion.Remove(newVersion.IndexOf('.') ,1).Replace(".",",").Split(' ')[0];        // number contains "2.2 Alpha"
-            // Convert to a comparable number
-            float localVersionRepresentation = float.Parse(rawLocalVersion);
-            float newVersionRepresentation   = float.Parse(rawNewVersion);
-
-            if (VersionNumber.Trim() != newVersion.Trim() && newVersionRepresentation > localVersionRepresentation)
-            {
-                // New updated version is released
-
                 if (MessageBox.Show(
-                    $"Version {newVersion} is available to download from the official GitHub Repo!\n\n" +
-                    "Do you want to continue getting update notifications?",
-                    "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
+                        $"Version {newVersion} is available to download from the official GitHub Repo!\n\n" +
+                        "Do you want to continue getting update notifications?",
+                        "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
                 {
                     Settings.hideNewVersions = VersionNumber;
                 }
