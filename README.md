@@ -1,5 +1,14 @@
 ![Font Manager Logo](https://github.com/WilliamRagstad/Font-Manager/blob/master/CSGO%20Font%20Manager/Resources/fontmanager.png?raw=true)
 
+<div align=center>
+ <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/WilliamRagstad/Font-Manager">
+ <img alt="GitHub All Releases" src="https://img.shields.io/github/downloads/WilliamRagstad/Font-Manager/total">
+</div>
+
+
+> ## Install
+> [Direct download](https://github.com/WilliamRagstad/Font-Manager/releases/latest/download/FontManager.exe) the latest version, or view all releases [here](https://github.com/WilliamRagstad/Font-Manager/releases).
+
 
 # Introduction
 
@@ -25,14 +34,9 @@ It features a "Drag-and-Drop" system which allows you to add new fonts in second
 
 [![Tutorial](https://img.youtube.com/vi/MhOnvkEIy1k/0.jpg)](https://www.youtube.com/watch?v=MhOnvkEIy1k)
 
+(Outdated)
+
 </div>
-
-
-
-
-> ## Install
-> [Download the latest version from here](https://github.com/WilliamRagstad/Font-Manager/releases ).
-
 
 
 

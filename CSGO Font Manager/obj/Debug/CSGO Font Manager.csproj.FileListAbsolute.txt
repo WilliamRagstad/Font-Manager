@@ -1,22 +1,3 @@
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\CSGO Font Manager.exe.config
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\CSGO Font Manager.exe
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\CSGO Font Manager.pdb
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\ActiproSoftware.Shared.WinForms.dll
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\ActiproSoftware.SyntaxEditor.WinForms.dll
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\Fastenshtein.dll
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\ActiproSoftware.Shared.WinForms.xml
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\ActiproSoftware.SyntaxEditor.WinForms.xml
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\Fastenshtein.xml
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO_Font_Manager.Form1.resources
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO_Font_Manager.Properties.Resources.resources
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.csproj.GenerateResource.cache
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.csproj.CoreCompileInputs.cache
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.csproj.CopyComplete
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.exe
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.pdb
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.csprojResolveAssemblyReference.cache
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\Newtonsoft.Json.dll
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\Newtonsoft.Json.xml
 C:\Users\ewr0327\Google Drive (william.ragstad@gmail.com)\- Programming Projects\Font-Manager\CSGO Font Manager\bin\Debug\CSGO Font Manager.exe.config
 C:\Users\ewr0327\Google Drive (william.ragstad@gmail.com)\- Programming Projects\Font-Manager\CSGO Font Manager\bin\Debug\CSGO Font Manager.exe
 C:\Users\ewr0327\Google Drive (william.ragstad@gmail.com)\- Programming Projects\Font-Manager\CSGO Font Manager\bin\Debug\CSGO Font Manager.pdb
@@ -29,3 +10,19 @@ C:\Users\ewr0327\Google Drive (william.ragstad@gmail.com)\- Programming Projects
 C:\Users\ewr0327\Google Drive (william.ragstad@gmail.com)\- Programming Projects\Font-Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.csproj.CoreCompileInputs.cache
 C:\Users\ewr0327\Google Drive (william.ragstad@gmail.com)\- Programming Projects\Font-Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.exe
 C:\Users\ewr0327\Google Drive (william.ragstad@gmail.com)\- Programming Projects\Font-Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.pdb
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\CSGO Font Manager.exe.config
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\CSGO Font Manager.exe
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\CSGO Font Manager.pdb
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\ActiproSoftware.Shared.WinForms.dll
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\ActiproSoftware.SyntaxEditor.WinForms.dll
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\Newtonsoft.Json.dll
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\ActiproSoftware.Shared.WinForms.xml
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\ActiproSoftware.SyntaxEditor.WinForms.xml
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\Newtonsoft.Json.xml
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO_Font_Manager.Form1.resources
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO_Font_Manager.Properties.Resources.resources
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.csproj.GenerateResource.cache
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.csproj.CoreCompileInputs.cache
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.csproj.CopyComplete
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.exe
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.pdb
