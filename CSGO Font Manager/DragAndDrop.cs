@@ -200,20 +200,30 @@ namespace CSGO_Font_Manager
 
         private float getCSGOPixelSize()
         {
+            float startValue = 0.9f;
+            float zoomFactor = 0.05f;
             switch (trackBar1.Value)
             {
                 case 1:
-                    return 0.9f + 0.1f * -2; // 0.7
+                    return startValue + zoomFactor * -3; // 0.6
                 case 2:
-                    return 0.9f + 0.1f * -1; // 0.8
+                    return startValue + zoomFactor * -2; // 0.7
                 case 3:
-                    return 0.9f;             // 0.9
+                    return startValue + zoomFactor * -1; // 0.8
                 case 4:
-                    return 0.9f + 0.1f * 1;  // 1.0
+                    return startValue + zoomFactor * 0;  // 0.9
                 case 5:
-                    return 0.9f + 0.1f * 2;  // 1.1
+                    return startValue + zoomFactor * 1;  // 1.0
+                case 6:
+                    return startValue + zoomFactor * 2;  // 1.1
+                case 7:
+                    return startValue + zoomFactor * 3;  // 1.2
+                case 8:
+                    return startValue + zoomFactor * 4;  // 1.3
+                case 9:
+                    return startValue + zoomFactor * 5;  // 1.4
                 default:
-                    return 0.9f;
+                    return startValue;
             }
         }
 
