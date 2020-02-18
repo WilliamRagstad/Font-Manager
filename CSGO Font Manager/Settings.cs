@@ -8,8 +8,9 @@ namespace CSGO_Font_Manager
 {
     public class Settings
     {
-        public string    csgoPath { get; set; }
-        public bool      proTips { get; set; }  = true;
-        public string    hideNewVersions { get; set; }
+        public string    CsgoPath { get; set; }
+        public bool      ProTips { get; set; }  = true;
+        public string    HideNewVersions { get; set; }
+        public string    ActiveFont { get; set; }
     }
 }

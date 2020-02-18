@@ -21,6 +21,7 @@ namespace CSGO_Font_Manager
         public void Save(T Data)
         {
             string json = JsonConvert.SerializeObject(Data, Formatting.Indented);
+            (new FileInfo(_targetFile)).Directory.Create();
             File.WriteAllText(_targetFile, json);
         }
     }

@@ -3,38 +3,43 @@
 <div align=center>
  <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/WilliamRagstad/Font-Manager">
  <img alt="GitHub All Releases" src="https://img.shields.io/github/downloads/WilliamRagstad/Font-Manager/total">
+ <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/WilliamRagstad/Font-Manager">
+ <img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/WilliamRagstad/Font-Manager?color=green">
 </div>
 
 
-> ## Install
+
+
+
+> ## Quick Install
+>
 > [Direct download](https://github.com/WilliamRagstad/Font-Manager/releases/latest/download/FontManager.exe) the latest version, or view all releases [here](https://github.com/WilliamRagstad/Font-Manager/releases).
+
+> ---
+
+
+
 
 
 # Introduction
 
 **Font Manager** is a software designed to simplify switching between different custom fonts for CS:GO.
 
-It features a "Drag-and-Drop" system which allows you to add new fonts in seconds. This software is safe to use and is completely VAC free.
+It features a "Drag-and-Drop" system which allows you to add new fonts in seconds. This software is safe to use and is completely VAC safe.
 
 #### Features:
 
-- Easy font management!
-- Drag and drop  to add new fonts! 
-- Add already installed system fonts
-- One click font removal 
-- **Support for the new panorama update!**
+- Easy font management
+- Drag and drop to add fonts
+- Add any system font
+- One click font removal
+- Support for the new panorama update
 
->  Just take me to the [installation](#Install)...
-
-## Videos
+## Video
 
 <div align=center>
 
 [![BananaGaming](https://img.youtube.com/vi/3xToNTtdmME/0.jpg)](https://www.youtube.com/watch?v=3xToNTtdmME)
-
-[![Tutorial](https://img.youtube.com/vi/MhOnvkEIy1k/0.jpg)](https://www.youtube.com/watch?v=MhOnvkEIy1k)
-
-(Outdated)
 
 </div>
 

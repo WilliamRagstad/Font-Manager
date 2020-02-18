@@ -10,9 +10,6 @@ C:\Users\ewr0327\Google Drive (william.ragstad@gmail.com)\- Programming Projects
 C:\Users\ewr0327\Google Drive (william.ragstad@gmail.com)\- Programming Projects\Font-Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.csproj.CoreCompileInputs.cache
 C:\Users\ewr0327\Google Drive (william.ragstad@gmail.com)\- Programming Projects\Font-Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.exe
 C:\Users\ewr0327\Google Drive (william.ragstad@gmail.com)\- Programming Projects\Font-Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.pdb
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\CSGO Font Manager.exe.config
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\CSGO Font Manager.exe
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\CSGO Font Manager.pdb
 D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\ActiproSoftware.Shared.WinForms.dll
 D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\ActiproSoftware.SyntaxEditor.WinForms.dll
 D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\Newtonsoft.Json.dll
@@ -24,5 +21,9 @@ D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\C
 D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.csproj.GenerateResource.cache
 D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.csproj.CoreCompileInputs.cache
 D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.csproj.CopyComplete
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.exe
-D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.pdb
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\CSGO Font Manager.csprojAssemblyReference.cache
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\Font Manager.exe.config
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\Font Manager.exe
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\bin\Debug\Font Manager.pdb
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\Font Manager.exe
+D:\Documents\Visual Studio repos\CSGO Font Manager\CSGO Font Manager\obj\Debug\Font Manager.pdb
