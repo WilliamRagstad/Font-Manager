@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Text;
@@ -18,13 +19,15 @@ namespace CSGO_Font_Manager
 {
     public partial class Form1 : Form
     {
-        public const string AssemblyVersion = "3.2.0.0";
-        public static string VersionNumber = "3.2";    // Remember to update stableVersion.txt when releasing a new stable update.
+        public const string AssemblyVersion = "3.3.0.0";
+        public static string VersionNumber = "3.3";    // Remember to update stableVersion.txt when releasing a new stable update.
                                                        // This will notify all Font Manager 2.0 clients that there is an update available.
                                                        // To push the notification, commit and push to the master repository on GitHub.
         private readonly string CurrentVersion = "https://raw.githubusercontent.com/WilliamRagstad/Font-Manager/master/CSGO%20Font%20Manager/stableVersion.txt";
-        
-        public static string HomeFolder = $@"C:\Users\{Environment.UserName}\Documents\";
+
+        public static string OldFontManagerFolder = $@"C:\Users\{Environment.UserName}\Documents\Font Manager\";
+        public static string HomeFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\";
+
         public static string FontManagerFolder = HomeFolder + @"Font Manager\";
         public static string FontsFolder = FontManagerFolder + @"Fonts\";
         public static string DataPath = FontManagerFolder + @"Data\";
@@ -59,7 +62,7 @@ namespace CSGO_Font_Manager
             version_label.Text = "Version " + VersionNumber;
             
             SetupFolderStructure();
-
+            
             SettingsManager = new JsonManager<Settings>(SettingsFile);
             Settings = SettingsManager.Load();
 
@@ -71,8 +74,18 @@ namespace CSGO_Font_Manager
             switchView(FormViews.Main);
         }
 
+        [DllImport("user32.dll")]
+        public static extern int SetForegroundWindow(IntPtr hwnd);
+
         private void AutoFocusRunningInstance()
         {
+            string title = Process.GetCurrentProcess().ProcessName;
+            Process[] runningFM = Process.GetProcessesByName(title);
+            if (runningFM.Length > 1)
+            {
+                SetForegroundWindow(runningFM[0].MainWindowHandle);
+                Environment.Exit(0);
+            }
             // Not implemented
         }
 
@@ -91,7 +104,7 @@ namespace CSGO_Font_Manager
                 using(var reader = new StreamReader(content)){
                     newVersion = reader.ReadToEnd().Replace("\n","");
 
-
+                    if (newVersion == Settings.HideNewVersions) return;
                 }
             }
             catch (Exception e)
@@ -121,54 +134,48 @@ namespace CSGO_Font_Manager
                         "Do you want to continue getting update notifications?",
                         "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
                 {
-                    Settings.hideNewVersions = VersionNumber;
+                    Settings.HideNewVersions = VersionNumber;
                 }
             }
         }
 
         private static void SetupFolderStructure()
         {
-            new FileIOPermission(FileIOPermissionAccess.Write, HomeFolder).Demand();
-            new FileIOPermission(FileIOPermissionAccess.Write, FontManagerFolder).Demand();
-            new FileIOPermission(FileIOPermissionAccess.Write, FontsFolder).Demand();
-            new FileIOPermission(FileIOPermissionAccess.Write, DataPath).Demand();
-            
-            ObtainFolderPermission(HomeFolder);
-            ObtainFolderPermission(FontManagerFolder);
-
-            try
+            if (Directory.Exists(HomeFolder))
             {
-                Directory.CreateDirectory(HomeFolder);
                 Directory.CreateDirectory(FontManagerFolder);
                 Directory.CreateDirectory(FontsFolder);
                 Directory.CreateDirectory(DataPath);
             }
-            catch
+            else
             {
-                System.Windows.Forms.DialogResult dr = MessageBox.Show("Font Manager does not seem to have permission to the document directory!", "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
-                if (dr == DialogResult.Retry) SetupFolderStructure();
-            }
-        }
-
-        public static void ObtainFolderPermission(string folderPath)
-        {
-            var directoryInfo = new DirectoryInfo(folderPath);
-            var directorySecurity = directoryInfo.GetAccessControl();
-            var currentUserIdentity = System.Security.Principal.WindowsIdentity.GetCurrent();
-
-            foreach (IdentityReference group in currentUserIdentity.Groups)
-            {
-                var fileSystemRule = new System.Security.AccessControl.FileSystemAccessRule(group,
-                    System.Security.AccessControl.FileSystemRights.Read,
-                    System.Security.AccessControl.InheritanceFlags.ObjectInherit |
-                    System.Security.AccessControl.InheritanceFlags.ContainerInherit,
-                    System.Security.AccessControl.PropagationFlags.None,
-                    System.Security.AccessControl.AccessControlType.Allow);
-          
-                directorySecurity.AddAccessRule(fileSystemRule);
+                MessageBox.Show("Appdata does not exist... You're not running this on linux or mac huh..", "No can do");
+                Application.Exit(new CancelEventArgs());
             }
             
-            directoryInfo.SetAccessControl(directorySecurity);
+            // Transfer all files from old (if existing) FontManager folder to the new one in AppData
+            if (Directory.Exists(OldFontManagerFolder))
+            {
+                if (Directory.Exists(OldFontManagerFolder + @"Fonts\"))
+                    foreach (string fontFolder in Directory.GetFileSystemEntries(OldFontManagerFolder + @"Fonts\"))
+                    {
+                        string dir = FontsFolder + Path.GetFileName(fontFolder) + @"\";
+                        if (Directory.Exists(dir)) continue;
+                        Directory.CreateDirectory(dir);
+                        foreach (string file in Directory.GetFiles(fontFolder))
+                        {
+                            string dst = dir + Path.GetFileName(file);
+                            if (!File.Exists(dst))
+                                File.Copy(file, dst);
+                        }
+                    }
+
+                if (File.Exists(OldFontManagerFolder + @"Data\settings.json") && !File.Exists(SettingsFile))
+                    File.Copy(OldFontManagerFolder + @"Data\settings.json", SettingsFile);
+                
+                if (Directory.Exists(OldFontManagerFolder))
+                    Directory.Delete(OldFontManagerFolder, true);
+            }
         }
         
         private void listBox1_Click(object sender, EventArgs e)
@@ -240,10 +247,10 @@ namespace CSGO_Font_Manager
 
         private void addFont_button_Click(object sender, EventArgs e)
         {
-            if (Settings.proTips)
+            if (Settings.ProTips)
             {
                 MessageBox.Show("Protip: If you want you can also just drag-and-drop fonts inside the font list.", "Drag and Drop!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Settings.proTips = false;
+                Settings.ProTips = false;
             }
 
             switchView(FormViews.AddSystemFont);
@@ -378,7 +385,7 @@ namespace CSGO_Font_Manager
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://github.com/WilliamRagstad/Font-Manager");
+            Process.Start("https://github.com/WilliamRagstad/Font-Manager/blob/master/README.md#introduction");
         }
 
         private void donate_button_Click(object sender, EventArgs e)
@@ -392,15 +399,20 @@ namespace CSGO_Font_Manager
 
         private void refreshFontList()
         {
+            int activeFontIndex = 0;
             //refresh list of fonts
             string[] dirs = Directory.GetDirectories(FontsFolder);
             listBox1.Items.Clear();
+            int index = 0;
             foreach (string dir in dirs)
             {
+                index++;
+
                 string foldername = Path.GetFileName(dir);
                 if (File.Exists(dir + "\\fonts.conf"))
                 {
                     listBox1.Items.Add(foldername);
+                    if (Settings.ActiveFont != null && Settings.ActiveFont.Equals(foldername)) activeFontIndex = index;
 
                     // Add the font to the private font collection
                     foreach (string file in Directory.GetFiles(dir))
@@ -424,7 +436,7 @@ namespace CSGO_Font_Manager
 
             // Add default font
             listBox1.Items.Insert(0, defaultFontName);
-            listBox1.SelectedIndex = 0;
+            listBox1.SelectedIndex = activeFontIndex;
         }
 
         private List<string> GetFiles(string path, string pattern)
@@ -456,7 +468,7 @@ namespace CSGO_Font_Manager
                 {
 
                     //Get the csgo path (home folder...) if data file not found...
-                    if (Settings.csgoPath != null)
+                    if (Settings.CsgoPath != null)
                     {
                         // Make sure the folders exists
                         string csgoConfD = csgoFontsFolder + "\\conf.d";
@@ -517,6 +529,8 @@ namespace CSGO_Font_Manager
                                 MessageBox.Show($"Successfully applied {listBox1.SelectedItem}!" +
                                                 (csgoIsRunning ? "\n\nRestart CS:GO for the font to take effect." : ""),
                                     "Font Applied!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                Settings.ActiveFont = listBox1.SelectedItem.ToString();
                             }
                             else
                             {
@@ -604,7 +618,7 @@ namespace CSGO_Font_Manager
         public static void LoadCSGOFolder(bool manual = false)
         {
             
-            if (Settings.csgoPath != null) csgoFontsFolder = Settings.csgoPath + @"\csgo\panorama\fonts";
+            if (Settings.CsgoPath != null) csgoFontsFolder = Settings.CsgoPath + @"\csgo\panorama\fonts";
             else
             {
                 string csgoPath = tryLocatingCSGOFolder();
@@ -623,7 +637,7 @@ namespace CSGO_Font_Manager
                         "Path Found!", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
                     SetupFolderStructure(); // Make sure all folders exists...
-                    Settings.csgoPath = csgoPath;
+                    Settings.CsgoPath = csgoPath;
                     LoadCSGOFolder(); // Update the csgo fonts folder path
                 }
                 else
@@ -756,7 +770,7 @@ namespace CSGO_Font_Manager
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (MessageBox.Show("This will only restore the path to Counter Strike: Global Offensive and restore utility programs (in case they need to be updated). If you want to delete all fonts, you must do so through the program.\n\n" + 
-                                "Current CS:GO Folder: " + Settings.csgoPath + "\n\nAre you sure you want to reset Font Manager?", "Reset?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                                "Current CS:GO Folder: " + Settings.CsgoPath + "\n\nAre you sure you want to reset Font Manager?", "Reset?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 Directory.Delete(DataPath, true);
                 LoadCSGOFolder();
@@ -854,7 +868,8 @@ namespace CSGO_Font_Manager
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Save settings
-            SettingsManager.Save(Settings);
+            if (Settings != null)
+                SettingsManager.Save(Settings);
         }
     }
 }
