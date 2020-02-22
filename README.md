@@ -4,7 +4,7 @@
  <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/WilliamRagstad/Font-Manager">
  <img alt="GitHub All Releases" src="https://img.shields.io/github/downloads/WilliamRagstad/Font-Manager/total">
  <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/WilliamRagstad/Font-Manager">
- <img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/WilliamRagstad/Font-Manager?color=green">
+ <img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/WilliamRagstad/Font-Manager?label=latest%20release">
 </div>
 
 
