@@ -87,8 +87,9 @@ Font Manager is developed by [Dotch](https://twitter.com/WilliamRagstad).
 Thanks to the following people whose
 projects have helped develop Font Manager:
 
-- Kliu - developer of FontReg ([source code here](http://code.kliu.org/misc/fontreg/)).
-- BananaGaming ([Maxim](https://twitter.com/BananaGamingCS)) - For his input & suggestions on how to improve the design for Version 3.0!🎉
+- Kliu - Developer of FontReg ([source code here](http://code.kliu.org/misc/fontreg/)).
+- [rrroyal](https://github.com/rrroyal) - For coming up with the original method of changing CS:GO fonts. 
+- BananaGaming ([Maxim](https://twitter.com/BananaGamingCS)) - For design improvements for v3.0.
 
 #### 2.3 Community
 
