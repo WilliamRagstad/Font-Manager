@@ -149,7 +149,7 @@ namespace CSGO_Font_Manager
             }
             else
             {
-                MessageBox.Show("Appdata does not exist... You're not running this on linux or mac huh..", "No can do");
+                MessageBox.Show("Appdata does not exist... You're not running this on linux or mac huh..?", "No can do");
                 Application.Exit(new CancelEventArgs());
             }
             
@@ -773,8 +773,7 @@ namespace CSGO_Font_Manager
                                 "Current CS:GO Folder: " + Settings.CsgoPath + "\n\nAre you sure you want to reset Font Manager?", "Reset?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 Directory.Delete(DataPath, true);
-                LoadCSGOFolder();
-                checkForUpdates();
+                Environment.Exit(0);
             }
         }
 
