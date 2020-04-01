@@ -101,6 +101,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="JsonManager.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ProtectedSettings.cs" />
     <Compile Include="Settings.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -115,11 +121,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -142,16 +143,13 @@
     <None Include="Resources\Thumbnail.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Thumbnail %282%29.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="fonmanager_icon.ico" />
     <None Include="Resources\fonmanager_icon-5.png" />
     <None Include="Resources\add_retro.png" />
     <None Include="Resources\remove_retro.png" />
+    <Content Include="Resources\updater.exe" />
     <Content Include="stableVersion.txt" />
     <None Include="Resources\FontReg.exe" />
-    <None Include="Resources\drop your font here.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

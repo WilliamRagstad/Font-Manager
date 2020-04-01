@@ -31,7 +31,9 @@ namespace CSGO_Font_Manager
         public static string FontManagerFolder = HomeFolder + @"Font Manager\";
         public static string FontsFolder = FontManagerFolder + @"Fonts\";
         public static string DataPath = FontManagerFolder + @"Data\";
+
         private static string SettingsFile = DataPath + "settings.json";
+        private static string UpdaterFile = DataPath + "updater.exe";
 
         public static Settings Settings;
         public static JsonManager<Settings> SettingsManager;
@@ -91,6 +93,7 @@ namespace CSGO_Font_Manager
 
         private void checkForUpdates()
         {
+            /*
             string versionPattern = @"(\d+\.)(\d+\.?)+";
 
             // Get new version
@@ -137,6 +140,24 @@ namespace CSGO_Font_Manager
                     Settings.HideNewVersions = VersionNumber;
                 }
             }
+            */
+
+            // Call updater.exe
+            string fmExe = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            var processInfo = new ProcessStartInfo
+            {
+                UseShellExecute = false,
+                RedirectStandardError = true,
+                RedirectStandardOutput = true,
+                CreateNoWindow = true,
+                FileName = UpdaterFile,
+                Arguments = $"\"{ProtectedSettings.Token}\" \"{VersionNumber}\" \"{fmExe}\""
+            };
+            Process p = Process.Start(processInfo);
+            p.WaitForExit();
+
+            string output = p.StandardOutput.ReadLine();
+            string err = p.StandardError.ReadLine();
         }
 
         private static void SetupFolderStructure()
@@ -146,6 +167,9 @@ namespace CSGO_Font_Manager
                 Directory.CreateDirectory(FontManagerFolder);
                 Directory.CreateDirectory(FontsFolder);
                 Directory.CreateDirectory(DataPath);
+
+                // Extract updater
+                File.WriteAllBytes(UpdaterFile, Properties.Resources.updater);
             }
             else
             {

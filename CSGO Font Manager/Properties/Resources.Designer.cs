@@ -73,26 +73,6 @@ namespace CSGO_Font_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap add_retro1 {
-            get {
-                object obj = ResourceManager.GetObject("add_retro1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap drophere {
-            get {
-                object obj = ResourceManager.GetObject("drophere", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap fonmanager_icon_5 {
             get {
                 object obj = ResourceManager.GetObject("fonmanager_icon-5", resourceCulture);
@@ -143,16 +123,6 @@ namespace CSGO_Font_Manager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap remove_retro1 {
-            get {
-                object obj = ResourceManager.GetObject("remove_retro1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap Thumbnail {
             get {
                 object obj = ResourceManager.GetObject("Thumbnail", resourceCulture);
@@ -171,12 +141,12 @@ namespace CSGO_Font_Manager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static System.Drawing.Bitmap Thumbnail2 {
+        public static byte[] updater {
             get {
-                object obj = ResourceManager.GetObject("Thumbnail2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                object obj = ResourceManager.GetObject("updater", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }
