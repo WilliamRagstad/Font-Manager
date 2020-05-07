@@ -19,8 +19,8 @@ namespace CSGO_Font_Manager
 {
     public partial class Form1 : Form
     {
-        public const string AssemblyVersion = "3.3.0.0";
-        public static string VersionNumber = "3.3";    // Remember to update stableVersion.txt when releasing a new stable update.
+        public const string AssemblyVersion = "3.5.0.0";
+        public static string VersionNumber = "3.5";    // Remember to update stableVersion.txt when releasing a new stable update.
                                                        // This will notify all Font Manager 2.0 clients that there is an update available.
                                                        // To push the notification, commit and push to the master repository on GitHub.
         private readonly string CurrentVersion = "https://raw.githubusercontent.com/WilliamRagstad/Font-Manager/master/CSGO%20Font%20Manager/stableVersion.txt";
@@ -94,7 +94,8 @@ namespace CSGO_Font_Manager
         private void checkForUpdates()
         {
             if (Settings.HideNewUpdates) return;
-            
+            if (UpdaterIsRunning()) return;
+
             string versionPattern = @"(\d+\.)(\d+\.?)+";
 
             // Get new version
@@ -148,10 +149,13 @@ namespace CSGO_Font_Manager
                         Arguments = $"\"{VersionNumber}\" \"{fmExe}\""
                     };
                     Process p = Process.Start(processInfo);
+                    Application.Exit();
+                    /*
                     p.WaitForExit();
 
                     string output = p.StandardOutput.ReadLine();
                     string err = p.StandardError.ReadLine();
+                    */
                 }
                 else if (MessageBox.Show(
                         $"Do you want to continue getting update notifications?\n" +
@@ -163,14 +167,17 @@ namespace CSGO_Font_Manager
             }
         }
 
+        private static bool UpdaterIsRunning()
+        {
+            Process[] processes = Process.GetProcessesByName(UpdaterExecName);
+            return processes.Length != 0;
+        }
+
         private static void ExtractUpdater()
         {
-            Process[] runningFM = Process.GetProcessesByName(UpdaterExecName);
-            if (runningFM.Length == 0)
-            {
-                // Extract updater
-                File.WriteAllBytes(UpdaterFile, Properties.Resources.updater);
-            }
+            if (UpdaterIsRunning()) return;
+            // Extract updater
+            File.WriteAllBytes(UpdaterFile, Properties.Resources.updater);
         }
 
         private static void SetupFolderStructure()
@@ -180,15 +187,14 @@ namespace CSGO_Font_Manager
                 Directory.CreateDirectory(FontManagerFolder);
                 Directory.CreateDirectory(FontsFolder);
                 Directory.CreateDirectory(DataPath);
-
-                ExtractUpdater();
             }
             else
             {
                 MessageBox.Show("Appdata does not exist... You're not running this on linux or mac huh..?", "No can do");
                 Application.Exit(new CancelEventArgs());
             }
-            
+            ExtractUpdater();
+
             // Transfer all files from old (if existing) FontManager folder to the new one in AppData
             if (Directory.Exists(OldFontManagerFolder))
             {
