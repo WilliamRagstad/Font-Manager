@@ -176,8 +176,13 @@ namespace CSGO_Font_Manager
         private static void ExtractUpdater()
         {
             if (UpdaterIsRunning()) return;
-            // Extract updater
-            File.WriteAllBytes(UpdaterFile, Properties.Resources.updater);
+
+            try
+            {
+                // Extract updater
+                File.WriteAllBytes(UpdaterFile, Properties.Resources.updater);
+            }
+            catch { }
         }
 
         private static void SetupFolderStructure()
