@@ -34,6 +34,7 @@ namespace CSGO_Font_Manager
 
         private static string SettingsFile = DataPath + "settings.json";
         private static string UpdaterFile = DataPath + "updater.exe";
+        private static string UpdaterExecName = "FontManagerUpdater";
 
         public static Settings Settings;
         public static JsonManager<Settings> SettingsManager;
@@ -88,12 +89,12 @@ namespace CSGO_Font_Manager
                 SetForegroundWindow(runningFM[0].MainWindowHandle);
                 Environment.Exit(0);
             }
-            // Not implemented
         }
 
         private void checkForUpdates()
         {
-            /*
+            if (Settings.HideNewUpdates) return;
+            
             string versionPattern = @"(\d+\.)(\d+\.?)+";
 
             // Get new version
@@ -106,8 +107,6 @@ namespace CSGO_Font_Manager
                 using(var content = response.GetResponseStream())
                 using(var reader = new StreamReader(content)){
                     newVersion = reader.ReadToEnd().Replace("\n","");
-
-                    if (newVersion == Settings.HideNewVersions) return;
                 }
             }
             catch (Exception e)
@@ -121,7 +120,7 @@ namespace CSGO_Font_Manager
                 Console.WriteLine("New version number is in an invalid format.");
                 return;
             }
-                        
+
             string rawLocalVersion = VersionNumber.Remove(VersionNumber.IndexOf('.') ,1).Replace(".",",").Split(' ')[0];  // Split in case version
             string rawNewVersion = newVersion.Remove(newVersion.IndexOf('.') ,1).Replace(".",",").Split(' ')[0];        // number contains "2.2 Alpha"
             // Convert to a comparable number
@@ -134,30 +133,44 @@ namespace CSGO_Font_Manager
 
                 if (MessageBox.Show(
                         $"Version {newVersion} is available to download from the official GitHub Repo!\n\n" +
-                        "Do you want to continue getting update notifications?",
-                        "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
+                        "Do you want to download the update now?",
+                        "Update Available", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    Settings.HideNewVersions = VersionNumber;
+                    // Call updater.exe
+                    string fmExe = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                    var processInfo = new ProcessStartInfo
+                    {
+                        UseShellExecute = false,
+                        RedirectStandardError = true,
+                        RedirectStandardOutput = true,
+                        CreateNoWindow = true,
+                        FileName = UpdaterFile,
+                        Arguments = $"\"{VersionNumber}\" \"{fmExe}\""
+                    };
+                    Process p = Process.Start(processInfo);
+                    p.WaitForExit();
+
+                    string output = p.StandardOutput.ReadLine();
+                    string err = p.StandardError.ReadLine();
+                }
+                else if (MessageBox.Show(
+                        $"Do you want to continue getting update notifications?\n" +
+                        $"You will be required to manually download the next release yourself.",
+                        "Update Notifications", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
+                {
+                    Settings.HideNewUpdates = true;
                 }
             }
-            */
+        }
 
-            // Call updater.exe
-            string fmExe = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            var processInfo = new ProcessStartInfo
+        private static void ExtractUpdater()
+        {
+            Process[] runningFM = Process.GetProcessesByName(UpdaterExecName);
+            if (runningFM.Length == 0)
             {
-                UseShellExecute = false,
-                RedirectStandardError = true,
-                RedirectStandardOutput = true,
-                CreateNoWindow = true,
-                FileName = UpdaterFile,
-                Arguments = $"\"{ProtectedSettings.Token}\" \"{VersionNumber}\" \"{fmExe}\""
-            };
-            Process p = Process.Start(processInfo);
-            p.WaitForExit();
-
-            string output = p.StandardOutput.ReadLine();
-            string err = p.StandardError.ReadLine();
+                // Extract updater
+                File.WriteAllBytes(UpdaterFile, Properties.Resources.updater);
+            }
         }
 
         private static void SetupFolderStructure()
@@ -168,8 +181,7 @@ namespace CSGO_Font_Manager
                 Directory.CreateDirectory(FontsFolder);
                 Directory.CreateDirectory(DataPath);
 
-                // Extract updater
-                File.WriteAllBytes(UpdaterFile, Properties.Resources.updater);
+                ExtractUpdater();
             }
             else
             {
