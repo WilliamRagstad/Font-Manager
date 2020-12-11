@@ -1,14 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CSGO_Font_Manager
 {
@@ -21,15 +12,15 @@ namespace CSGO_Font_Manager
         {
             InitializeComponent();
         }
+
         public void Button_Ok_Click(object sender, RoutedEventArgs e)
         {
             if (String.IsNullOrWhiteSpace(User_Input.Text))
             {
                 MessageBox.Show("Textbox is empty?");
-                
             }
             else
-            MainWindow.csgoPath = User_Input.Text;
+                MainWindow.csgoPath = User_Input.Text;
             this.Close();
         }
 
@@ -40,7 +31,6 @@ namespace CSGO_Font_Manager
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
             MainWindow.running = false;
         }
 

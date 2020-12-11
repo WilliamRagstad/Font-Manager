@@ -1,9 +1,9 @@
-﻿using System.IO;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System.IO;
 
 namespace CSGO_Font_Manager
 {
-    public class JsonManager<T> where T: new()
+    public class JsonManager<T> where T : new()
     {
         private string _targetFile { get; set; }
 

@@ -11,7 +11,6 @@ using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-
 namespace CSGO_Font_Manager
 {
     public partial class Form1
@@ -32,7 +31,7 @@ namespace CSGO_Font_Manager
                     string extension = Path.GetExtension(filepath).ToLower();
                     string rawfilename = Path.GetFileName(filepath);
                     string filename = rawfilename;
-                    if (extension != "") filename = rawfilename.Replace(extension,"");
+                    if (extension != "") filename = rawfilename.Replace(extension, "");
 
                     string fontpath = null;
 
@@ -79,7 +78,7 @@ namespace CSGO_Font_Manager
                                 string matchedFiles = "";
                                 for (int j = 0; j < fontfiles.Count; j++)
                                 {
-                                    matchedFiles += $"{j+1} - {Path.GetFileName(fontfiles[j])}\n";
+                                    matchedFiles += $"{j + 1} - {Path.GetFileName(fontfiles[j])}\n";
                                 }
 
                                 matchedFiles += "\n";
@@ -90,7 +89,7 @@ namespace CSGO_Font_Manager
                                 string selectedFont = Microsoft.VisualBasic.Interaction.InputBox(
                                     message, "Select font", fontfiles.Count.ToString());
                                 int selectedFontIndex;
-                                while (!(int.TryParse(selectedFont, out selectedFontIndex) && selectedFontIndex <= fontfiles.Count && selectedFontIndex > 0 ) )
+                                while (!(int.TryParse(selectedFont, out selectedFontIndex) && selectedFontIndex <= fontfiles.Count && selectedFontIndex > 0))
                                 {
                                     if (selectedFont == "") // Assume cancel
                                     {
@@ -119,7 +118,6 @@ namespace CSGO_Font_Manager
                             {
                                 fontpath = fontfiles[0];
                             }
-                            
                         }
                         else if (extractedFiles.Length == 1)
                         {
@@ -159,9 +157,9 @@ namespace CSGO_Font_Manager
                         }
 
                         setupFontsDirectory(fontsFile, fontFamily.Name, Path.GetFileName(fontpath));
-                        
+
                         if (i == 0) addedFonts += fontFamily.Name;
-                        else  addedFonts += ", " + filename;
+                        else addedFonts += ", " + filename;
                     }
                     else
                     {
@@ -184,7 +182,6 @@ namespace CSGO_Font_Manager
             listBox1.Enabled = true;
         }
 
-
         public static bool IsFontExtension(string extension)
         {
             extension = extension.ToLower();
@@ -195,7 +192,7 @@ namespace CSGO_Font_Manager
         private void setupFontsDirectory(string fontsFile, string fontname, string fontfilename)
         {
             string extension = Path.GetExtension(fontfilename);
-            File.WriteAllText(fontsFile, FileTemplates.fonts_conf(fontname, extension, fontfilename, getCSGOPixelSize().ToString().Replace(",",".")));
+            File.WriteAllText(fontsFile, FileTemplates.fonts_conf(fontname, extension, fontfilename, getCSGOPixelSize().ToString().Replace(",", ".")));
         }
 
         private float getCSGOPixelSize()
@@ -227,18 +224,21 @@ namespace CSGO_Font_Manager
             }
         }
 
-        #region  External Code
+        #region External Code
+
         [DllImport("gdi32", EntryPoint = "AddFontResource")]
         public static extern int AddFontResourceA(string lpFileName);
+
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
         private static extern int AddFontResource(string lpszFilename);
+
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
         private static extern int CreateScalableFontResource(uint fdwHidden, string
         lpszFontRes, string lpszFontFile, string lpszCurrentPath);
 
         private static bool InstallFont(string fontFilePath)
         {
-            string fontReg = Path.Combine(Path.GetTempPath(), "fontReg.exe");  
+            string fontReg = Path.Combine(Path.GetTempPath(), "fontReg.exe");
             if (!File.Exists(fontReg)) File.WriteAllBytes(fontReg, Properties.Resources.FontReg);
 
             var info = new ProcessStartInfo()
@@ -268,44 +268,50 @@ namespace CSGO_Font_Manager
         public static string GetSystemFontFileName(Font font)
         {
             RegistryKey fonts = null;
-            try{
+            try
+            {
                 fonts = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows NT\CurrentVersion\Fonts", false);
-                if(fonts == null)
+                if (fonts == null)
                 {
                     fonts = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Fonts", false);
-                    if(fonts == null)
+                    if (fonts == null)
                     {
                         throw new Exception("Can't find font registry database.");
                     }
                 }
 
                 string suffix = "";
-                if(font.Bold)
+                if (font.Bold)
                     suffix += "(?: Bold)?";
-                if(font.Italic)
+                if (font.Italic)
                     suffix += "(?: Italic)?";
 
-                var regex = new Regex(@"^(?:.+ & )?"+Regex.Escape(font.Name)+@"(?: & .+)?(?<suffix>"+suffix+@") \(TrueType\)$", RegexOptions.Compiled);
+                var regex = new Regex(@"^(?:.+ & )?" + Regex.Escape(font.Name) + @"(?: & .+)?(?<suffix>" + suffix + @") \(TrueType\)$", RegexOptions.Compiled);
 
                 string[] names = fonts.GetValueNames();
 
                 string name = names.Select(n => regex.Match(n)).Where(m => m.Success).OrderByDescending(m => m.Groups["suffix"].Length).Select(m => m.Value).FirstOrDefault();
 
-                if(name != null)
+                if (name != null)
                 {
                     return fonts.GetValue(name).ToString();
-                }else{
+                }
+                else
+                {
                     return null;
                 }
-            }finally{
-                if(fonts != null)
+            }
+            finally
+            {
+                if (fonts != null)
                 {
                     fonts.Dispose();
                 }
             }
         }
-        
-        Dictionary<string, List<string>> _fontNameToFiles;
+
+        private Dictionary<string, List<string>> _fontNameToFiles;
+
         private IEnumerable<string> GetFilesForFont(string fontName)
         {
             if (_fontNameToFiles == null)
@@ -336,11 +342,11 @@ namespace CSGO_Font_Manager
                 }
             }
             List<string> result;
-            if (!_fontNameToFiles.TryGetValue(fontName,  out result))
+            if (!_fontNameToFiles.TryGetValue(fontName, out result))
                 return new string[0];
             return result;
         }
 
-        #endregion
+        #endregion External Code
     }
 }

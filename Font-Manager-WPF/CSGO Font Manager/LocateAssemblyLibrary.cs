@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSGO_Font_Manager
 {
-    static class LocateAssemblyLibrary
+    internal static class LocateAssemblyLibrary
     {
         public static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
         {

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSGO_Font_Manager
+﻿namespace CSGO_Font_Manager
 {
-    class FileTemplates
+    internal class FileTemplates
     {
         public static string fonts_conf(string fontname, string fontext, string fontfile, string pixelSize) =>
             "<?xml version='1.0'?>\n" +
@@ -358,8 +352,8 @@ namespace CSGO_Font_Manager
             "	</match>\n" +
             "	\n" +
             "</fontconfig>";
-        
-        public static string fonts_conf_backup() => 
+
+        public static string fonts_conf_backup() =>
 "<?xml version='1.0'?>\n" +
 "<!DOCTYPE fontconfig SYSTEM 'fonts.dtd'>\n" +
 "<fontconfig>\n" +
