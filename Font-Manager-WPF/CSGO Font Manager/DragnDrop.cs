@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
@@ -57,11 +56,12 @@ namespace CSGO_Font_Manager
             }
         }
 
-        
         [DllImport("gdi32", EntryPoint = "AddFontResource")]
         public static extern int AddFontResourceA(string lpFileName);
+
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
         private static extern int AddFontResource(string lpszFilename);
+
         [System.Runtime.InteropServices.DllImport("gdi32.dll")]
         private static extern int CreateScalableFontResource(uint fdwHidden, string
         lpszFontRes, string lpszFontFile, string lpszCurrentPath);
@@ -114,9 +114,9 @@ namespace CSGO_Font_Manager
                 string suffix = "";
                 foreach (var item in familyTypefaceCollection)
                 {
-                    if(item.Weight == test)
+                    if (item.Weight == test)
                         suffix += "(?: Bold)?";
-                    if(item.Style == FontStyles.Italic)
+                    if (item.Style == FontStyles.Italic)
                         suffix += "(?: Italic)?";
                 }
                 //if (familyTypefaceCollection)
@@ -148,7 +148,8 @@ namespace CSGO_Font_Manager
             }
         }
 
-        Dictionary<string, List<string>> _fontNameToFiles;
+        private Dictionary<string, List<string>> _fontNameToFiles;
+
         private IEnumerable<string> GetFilesForFont(string fontName)
         {
             if (_fontNameToFiles == null)
