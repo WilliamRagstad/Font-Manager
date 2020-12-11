@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <RootNamespace>CSGO_Font_Manager</RootNamespace>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\add_retro.png" />
+    <None Remove="Resources\fonmanager_icon-5.png" />
+    <None Remove="Resources\fontmanager.png" />
+    <None Remove="Resources\fontmanager_watermark.png" />
+    <None Remove="Resources\FontReg.exe" />
+    <None Remove="Resources\remove_retro.png" />
+    <None Remove="Resources\Thumbnail.jpg" />
+    <None Remove="Resources\Thumbnail.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\FontReg.exe" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\add_retro.png" />
+    <Resource Include="Resources\fonmanager_icon-5.png" />
+    <Resource Include="Resources\fontmanager.png" />
+    <Resource Include="Resources\fontmanager_watermark.png" />
+    <Resource Include="Resources\remove_retro.png" />
+    <Resource Include="Resources\Thumbnail.jpg" />
+    <Resource Include="Resources\Thumbnail.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

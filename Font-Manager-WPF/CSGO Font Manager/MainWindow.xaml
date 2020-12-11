@@ -1,0 +1,58 @@
+﻿<Window x:Class="CSGO_Font_Manager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CSGO_Font_Manager"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="457" Width="295"
+        MinHeight="350" MinWidth="200"
+        MaxHeight="500" MaxWidth="400"
+        WindowStyle="SingleBorderWindow"
+        Background="#FF212324" ContentRendered="onStart"
+        Closing="Window_Closing">
+
+    <Grid>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <Image x:Key="test" Source="Resources\add_retro.png"/>
+
+            </ResourceDictionary>
+        </Grid.Resources>
+        <Label Name="title_Lable" Height="35" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" Content="CS:GO Fonts" FontFamily="Microsoft Sans Serif" FontSize="14.25" Foreground="#FF75CAF4" Margin="0,5,0,0" />
+        <TextBox Name="search_textBox" Height="22" Width="131" Background="DarkSlateGray" VerticalAlignment="Top" Margin="30,5,0,0"/>
+        <Button Name="addFont_button" Click="addFont_button_Click" Height="22" Width="22" Background="Transparent" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,39,0" >
+            <StackPanel>
+                <Image Source="Resources\add_retro.png"/>
+            </StackPanel>
+        </Button>
+        <Button Name="removefont_button" Click="removefont_button_Click" Height="22" Width="22" Background="Transparent" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,8,0" >
+            <StackPanel>
+                <Image Source="Resources\remove_retro.png"/>
+            </StackPanel>
+        </Button>
+        <ListBox Name="FontList" SelectionChanged="FontList_SelectionChanged" Width="280" Height="160" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" Background="#FFC8EBF4" Drop="FontList_Drop" DragEnter="FontList_DragEnter" AllowDrop="True"/>
+        <Slider Name="FontSize" Width="280" Height="45" IsMoveToPointEnabled="True" Maximum="9" Value="5" Minimum="1" SmallChange="1" LargeChange="2" TickFrequency="1" IsSnapToTickEnabled="True" TickPlacement="BottomRight" ValueChanged="FontSize_ValueChanged" />
+        <RichTextBox Name="FontPreview_RichTextBox" Width="280" Height="67" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,90,0,0" Background="#FF212324" Foreground="#FFC8EBF4" FontSize="14.25"/>
+
+        <Button Name="Apply_Font" Content="Apply Selected Font" Width="280" Height="41" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,95" Background="MediumSpringGreen" FontFamily="Microsoft Sams Serif" FontSize="16"/>
+        <Button Name="donate_button" Click="donate_button_Click"  Content="Support me 🎉" Width="280" Height="29" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,60" Background="#FFB8FD0A" FontFamily="Microsoft Sams Serif"/>
+        <Label Name="version" Content="[Version]" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="DarkGray"/>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="DarkGray" Margin="50,0,0,0">
+            <Hyperlink Name="Feedback_label" NavigateUri="https://docs.google.com/forms/d/e/1FAIpQLSfkChgD2T-RYNyfBCRL2EjUQfJ3y8tvPKemGJca2kMU1jV8AQ/viewform?usp=sf_link" RequestNavigate="Feedback_label_RequestNavigate" Foreground="MediumSpringGreen">
+                <TextBlock Text="Feedback"/>
+            </Hyperlink>
+        </Label>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="DarkGray" Margin="150,0,0,0">
+            <Hyperlink Name="Reset_label" Click="Reset_label_Click" Foreground="MediumSpringGreen">
+                <TextBlock Text="Reset"/>
+            </Hyperlink>
+        </Label>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="DarkGray" Margin="230,0,0,0">
+            <Hyperlink Name="About_label" Click="About_label_Click" Foreground="MediumSpringGreen">
+                <TextBlock Text="About"/>
+            </Hyperlink>
+        </Label>
+    </Grid>
+</Window>

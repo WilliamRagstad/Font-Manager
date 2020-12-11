@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2015
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSGO Font Manager", "CSGO Font Manager\CSGO Font Manager.csproj", "{BC394694-0ADC-43A7-878E-C129D28E1142}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSGO Font Manager-WPF", "Font-Manager-WPF\CSGO Font Manager\CSGO Font Manager-WPF.csproj", "{915693BF-C418-43D6-9811-06B526A1869A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSGO Font Manager", "Font-Manager\CSGO Font Manager\CSGO Font Manager.csproj", "{BC394694-0ADC-43A7-878E-C129D28E1142}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,6 +13,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{915693BF-C418-43D6-9811-06B526A1869A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{915693BF-C418-43D6-9811-06B526A1869A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{915693BF-C418-43D6-9811-06B526A1869A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{915693BF-C418-43D6-9811-06B526A1869A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BC394694-0ADC-43A7-878E-C129D28E1142}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BC394694-0ADC-43A7-878E-C129D28E1142}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC394694-0ADC-43A7-878E-C129D28E1142}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -20,6 +26,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {08CD7ABE-79CA-4141-B6EC-230FF0F14306}
+		SolutionGuid = {E31CE97A-2438-46EE-A6E4-C61A36B27741}
 	EndGlobalSection
 EndGlobal
