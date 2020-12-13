@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-
-//using System.Drawing.Text;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -58,28 +56,12 @@ namespace CSGO_Font_Manager
         public static FormViews CurrentFormView = FormViews.Main;
         private static System.Drawing.Text.PrivateFontCollection _privateFontCollection = new System.Drawing.Text.PrivateFontCollection();
 
-        private int BaseWidth = 280;
-        private int BaseHeight = 67;
+        //private int BaseWidth = 280;
+        //private int BaseHeight = 67;
 
-        private float zoomFactor = 0.1f;
+        //private float zoomFactor = 0.1f;
 
         public static bool running = true;
-
-        public int RWidth
-        {
-            get
-            {
-                return (int)(BaseWidth * zoomFactor);
-            }
-        }
-
-        public int RHeight
-        {
-            get
-            {
-                return (int)(BaseHeight * zoomFactor);
-            }
-        }
 
         public enum FormViews
         {
@@ -191,7 +173,7 @@ namespace CSGO_Font_Manager
             try
             {
                 // Extract updater
-                //File.WriteAllBytes(UpdaterFile, Properties.Resources.updater);
+                File.WriteAllBytes(UpdaterFile, Properties.Resources.updater);
             }
             catch { }
         }
@@ -525,7 +507,7 @@ namespace CSGO_Font_Manager
 
                             if (File.Exists(fontsConfPath))
                             {
-                                //new FileIOPermission( FileIOPermissionAccess.Write ,csgoFontsConf).Demand();
+                                //new FileIOPermission( FileIOPermissionAccess.Write ,csgoFontsConf).Demand(); https://github.com/dotnet/docs/issues/21021
                                 File.Copy(fontsConfPath, csgoFontsConf, true);
 
                                 // Add font file into csgo path
@@ -698,7 +680,10 @@ namespace CSGO_Font_Manager
                 string csgoDir = lib + @"\steamapps\common\Counter-Strike Global Offensive";
                 if (Directory.Exists(csgoDir))
                 {
-                    return csgoDir;
+                    if (File.Exists(csgoDir + @"\csgo.exe"))//If a user has Multiple CSGO directories choose the one with the csgo.exe present :)
+                    {
+                        return csgoDir;
+                    }
                 }
             }
 
@@ -781,10 +766,6 @@ namespace CSGO_Font_Manager
 
         #endregion Font Management
 
-        private void FontPreview_RichTextBox_TextChanged(object sender, EventArgs e)
-        {
-        }
-
         private int previousLength = 0;
         private bool lastestWasReload = false;
 
@@ -826,39 +807,6 @@ namespace CSGO_Font_Manager
             }
         }
 
-        private void onStart(object sender, EventArgs e)
-        {
-            AutoFocusRunningInstance();
-            version.Content = "Version: " + VersionNumber;
-
-            SetupFolderStructure();
-
-            SettingsManager = new JsonManager<Settings>(SettingsFile);
-            Settings = SettingsManager.Load();
-
-            checkForUpdates();
-            LoadCSGOFolder();
-            refreshFontList();
-
-            // Update all texts
-            switchView(FormViews.Main);
-        }
-
-        private void Reset_label_Click(object sender, RoutedEventArgs e)
-        {
-            if (MessageBox.Show("This will only restore the path to Counter Strike: Global Offensive and restore utility programs (in case they need to be updated). If you want to delete all fonts, you must do so through the program.\n\n" +
-                    "Current CS:GO Folder: " + Settings.CsgoPath + "\n\nAre you sure you want to reset Font Manager?", "Reset?", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-            {
-                Directory.Delete(DataPath, true);
-                Environment.Exit(0);
-            }
-        }
-
-        private void About_label_Click(object sender, RoutedEventArgs e)
-        {
-            Process.Start("https://github.com/WilliamRagstad/Font-Manager/blob/master/README.md#introduction");
-        }
-
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             // Save settings
@@ -870,15 +818,6 @@ namespace CSGO_Font_Manager
         {
             showFontPreview();
             showFontPreview();//I Let the second one stay (even though i have no clue why its there but i thought rather not delete it :)
-        }
-
-        private void donate_button_Click(object sender, RoutedEventArgs e)
-        {
-            if (CurrentFormView == FormViews.Main) Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WMFWT9YN58D26&source=url");
-            else
-            {
-                switchView(FormViews.Main);
-            }
         }
 
         private void FontSize_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -1134,6 +1073,49 @@ namespace CSGO_Font_Manager
         {
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri) { UseShellExecute = true });
             e.Handled = true;
+        }
+
+        private void Reset_label_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("This will only restore the path to Counter Strike: Global Offensive and restore utility programs (in case they need to be updated). If you want to delete all fonts, you must do so through the program.\n\n" +
+                    "Current CS:GO Folder: " + Settings.CsgoPath + "\n\nAre you sure you want to reset Font Manager?", "Reset?", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                Directory.Delete(DataPath, true);
+                Environment.Exit(0);
+            }
+        }
+
+        private void About_label_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri) { UseShellExecute = true });
+            e.Handled = true;
+        }
+
+        private void donate_button_Click(object sender, RoutedEventArgs e)
+        {
+            if (CurrentFormView == FormViews.Main) Process.Start(new ProcessStartInfo("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WMFWT9YN58D26&source=url") { UseShellExecute = true });
+            else
+            {
+                switchView(FormViews.Main);
+            }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            AutoFocusRunningInstance();
+            version.Content = "Version: " + VersionNumber;
+
+            SetupFolderStructure();
+
+            SettingsManager = new JsonManager<Settings>(SettingsFile);
+            Settings = SettingsManager.Load();
+
+            checkForUpdates();
+            LoadCSGOFolder();
+            refreshFontList();
+
+            // Update all texts
+            switchView(FormViews.Main);
         }
     }
 }

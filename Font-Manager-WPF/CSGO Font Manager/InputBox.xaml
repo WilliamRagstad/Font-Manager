@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CSGO_Font_Manager"
         mc:Ignorable="d"
-        Title="InputBox" Height="120" Width="250"
+        Title="InputBox" Height="144" Width="250"
         Closing="Window_Closing" ContentRendered="Window_ContentRendered">
     <Grid>
         <TextBlock Name="Description" Text="Lorem Ipsum Dolar Sit Amut" Height="55" VerticalAlignment="Top" Background="LightGray" />
-        <TextBox Name="User_Input" BorderBrush="Black" BorderThickness="0.3" Height="30" VerticalAlignment="Center" Margin="0,36,0,0" />
+        <TextBox Name="User_Input" Width="250"  BorderBrush="Black" BorderThickness="0.8" Height="30"  Margin="0,35,0,0" />
         <Button Name="Button_Ok" Content="Ok" Height="19" Width="66" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="Button_Ok_Click" />
         <Button Name="Button_Cancel" Content="Cancel" Height="19" Width="66" VerticalAlignment="Bottom" Margin="51,0,0,0" Click="Button_Cancel_Click" />
     </Grid>

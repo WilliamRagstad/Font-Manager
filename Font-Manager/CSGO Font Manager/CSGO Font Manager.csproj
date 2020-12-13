@@ -53,7 +53,7 @@
   <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>D4FDEF984D1A0C754B094CB55EEEF128D4012AF8</ManifestCertificateThumbprint>
@@ -144,7 +144,7 @@
     <None Include="Resources\fonmanager_icon-5.png" />
     <None Include="Resources\add_retro.png" />
     <None Include="Resources\remove_retro.png" />
-    <Content Include="Resources\updater.exe" />
+    <EmbeddedResource Include="Resources\updater.exe" />
     <Content Include="stableVersion.txt" />
     <None Include="Resources\FontReg.exe" />
   </ItemGroup>

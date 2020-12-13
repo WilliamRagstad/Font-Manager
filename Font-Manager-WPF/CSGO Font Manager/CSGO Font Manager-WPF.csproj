@@ -16,10 +16,12 @@
     <None Remove="Resources\remove_retro.png" />
     <None Remove="Resources\Thumbnail.jpg" />
     <None Remove="Resources\Thumbnail.png" />
+    <None Remove="Resources\updater.exe" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\FontReg.exe" />
+    <EmbeddedResource Include="Resources\updater.exe" />
   </ItemGroup>
 
   <ItemGroup>

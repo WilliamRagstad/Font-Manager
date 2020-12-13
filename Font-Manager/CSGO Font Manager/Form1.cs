@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -10,9 +9,11 @@ using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
+using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace CSGO_Font_Manager
 {
@@ -20,7 +21,6 @@ namespace CSGO_Font_Manager
     {
         public const string AssemblyVersion = "3.5.0.0";
         public static string VersionNumber = "3.5";    // Remember to update stableVersion.txt when releasing a new stable update.
-
                                                        // This will notify all Font Manager 2.0 clients that there is an update available.
                                                        // To push the notification, commit and push to the master repository on GitHub.
         private readonly string CurrentVersion = "https://raw.githubusercontent.com/WilliamRagstad/Font-Manager/master/CSGO%20Font%20Manager/stableVersion.txt";
@@ -181,7 +181,7 @@ namespace CSGO_Font_Manager
             try
             {
                 // Extract updater
-                //File.WriteAllBytes(UpdaterFile, Properties.Resources.updater);
+                File.WriteAllBytes(UpdaterFile, Properties.Resources.updater);
             }
             catch { }
         }
@@ -288,6 +288,7 @@ namespace CSGO_Font_Manager
                 }
             }
 
+
             fontPreview_richTextBox.Visible = true;
             if (CurrentFormView == FormViews.Main) trackBar1.Visible = true;
         }
@@ -321,7 +322,6 @@ namespace CSGO_Font_Manager
 
                     refreshFontList();
                     break;
-
                 case FormViews.AddSystemFont:
                     title_label.Text = "System Fonts";
                     addFont_button.Visible = false;
@@ -380,8 +380,7 @@ namespace CSGO_Font_Manager
             return sanitized;
         }
 
-        private delegate void AddListBoxItemCallback(string text);
-
+        delegate void AddListBoxItemCallback(string text);
         public void AddListBoxItem(object item)
         {
             if (this.InvokeRequired)
@@ -393,7 +392,11 @@ namespace CSGO_Font_Manager
             {
                 this.listBox1.Items.Add(item);
             }
+
         }
+
+
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -511,6 +514,7 @@ namespace CSGO_Font_Manager
                 DialogResult dialogResult = MessageBox.Show(message, "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
+
                     //Get the csgo path (home folder...) if data file not found...
                     if (Settings.CsgoPath != null)
                     {
@@ -538,6 +542,7 @@ namespace CSGO_Font_Manager
                             string fontsConfPath = FontsFolder + listBox1.SelectedItem + "\\fonts.conf";
                             string csgoFontsConf = csgoFontsFolder + "\\fonts.conf";
 
+
                             // Generate a new fonts.conf
                             string fontFilePath = null;
                             foreach (string file in Directory.GetFiles(FontsFolder + listBox1.SelectedItem))
@@ -554,6 +559,7 @@ namespace CSGO_Font_Manager
                                 FontFamily fontFamily = GetFontFamilyByName(listBox1.SelectedItem.ToString());
                                 setupFontsDirectory(fontsConfPath, fontFamily.Name, Path.GetFileName(fontFilePath));
                             }
+
 
                             if (File.Exists(fontsConfPath))
                             {
@@ -659,6 +665,7 @@ namespace CSGO_Font_Manager
 
         public static void LoadCSGOFolder(bool manual = false)
         {
+
             if (Settings.CsgoPath != null) csgoFontsFolder = Settings.CsgoPath + @"\csgo\panorama\fonts";
             else
             {
@@ -728,6 +735,8 @@ namespace CSGO_Font_Manager
 
             return null;
         }
+
+
 
         #region Font Management
 
@@ -804,7 +813,7 @@ namespace CSGO_Font_Manager
             }
         }
 
-        #endregion Font Management
+        #endregion
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -830,48 +839,41 @@ namespace CSGO_Font_Manager
                 case 1:
                     fontPreview_richTextBox.ZoomFactor = 1 + zoomFactor * -4;
                     break;
-
                 case 2:
                     fontPreview_richTextBox.ZoomFactor = 1 + zoomFactor * -3;
                     break;
-
                 case 3:
                     fontPreview_richTextBox.ZoomFactor = 1 + zoomFactor * -2;
                     break;
-
                 case 4:
                     fontPreview_richTextBox.ZoomFactor = 1 + zoomFactor * -1;
                     break;
-
                 case 5:
                     fontPreview_richTextBox.ZoomFactor = 1 + zoomFactor * 0;
                     break;
-
                 case 6:
                     fontPreview_richTextBox.ZoomFactor = 1 + zoomFactor * 1;
                     break;
-
                 case 7:
                     fontPreview_richTextBox.ZoomFactor = 1 + zoomFactor * 2;
                     break;
-
                 case 8:
                     fontPreview_richTextBox.ZoomFactor = 1 + zoomFactor * 3;
                     break;
-
                 case 9:
                     fontPreview_richTextBox.ZoomFactor = 1 + zoomFactor * 4;
                     break;
+
             }
         }
 
         private void fontPreview_richTextBox_TextChanged(object sender, EventArgs e)
         {
+
         }
 
         private int previousLength = 0;
         private bool lastestWasReload = false;
-
         private void search_textBox_TextChanged(object sender, EventArgs e)
         {
             if (search_textBox.Text.Length > previousLength)
