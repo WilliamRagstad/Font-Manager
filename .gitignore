@@ -74,3 +74,6 @@ _ReSharper*/
 *.pfx
 *.exe
 CSGO Font Manager/ProtectedSettings.cs
+Font-Manager-WPF/.vs/VSWorkspaceState.json
+Font-Manager-WPF/.vs/slnx.sqlite
+Font-Manager-WPF/.vs/ProjectSettings.json
