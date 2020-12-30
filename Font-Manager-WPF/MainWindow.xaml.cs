@@ -609,26 +609,6 @@ namespace CSGO_Font_Manager
 
         #endregion Font Management
 
-        private int previousLength = 0;
-        private bool lastestWasReload = false;
-
-        private void search_textBox_TextChanged(object sender, EventArgs e)
-        {
-            if (search_textBox.Text.Length > previousLength)
-            {
-                filterFonts(search_textBox.Text);
-                lastestWasReload = false;
-            }
-            else if (!lastestWasReload)
-            {
-                loadSystemFontList();
-                filterFonts(search_textBox.Text);
-                lastestWasReload = true;
-            }
-
-            previousLength = search_textBox.Text.Length;
-        }
-
         private void filterFonts(string name)
         {
             string filterName = name.Trim().ToLower();
@@ -1127,6 +1107,25 @@ namespace CSGO_Font_Manager
 
                 refreshFontList();
             }
+        }
+
+        private int previousLength = 0;
+        private bool lastestWasReload = false;
+        private void search_textBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (search_textBox.Text.Length > previousLength)
+            {
+                filterFonts(search_textBox.Text);
+                lastestWasReload = false;
+            }
+            else if (!lastestWasReload)
+            {
+                loadSystemFontList();
+                filterFonts(search_textBox.Text);
+                lastestWasReload = true;
+            }
+
+            previousLength = search_textBox.Text.Length;
         }
     }
 }
