@@ -38,7 +38,7 @@
         <Slider Name="FontSize" Width="280" Height="45" IsMoveToPointEnabled="True" Maximum="9" Value="5" Minimum="1" SmallChange="1" LargeChange="2" TickFrequency="1" IsSnapToTickEnabled="True" TickPlacement="BottomRight" ValueChanged="FontSize_ValueChanged" />
         <RichTextBox Name="FontPreview_RichTextBox" Width="280" Height="67" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,90,0,0" Background="#FF212324" Foreground="#FFC8EBF4" FontSize="14.25" />
 
-        <Button Name="Apply_Font" Content="Apply Selected Font" Width="280" Height="41" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,95" Background="MediumSpringGreen" FontFamily="Microsoft Sams Serif" FontSize="16" />
+        <Button Name="Apply_Font" Content="Apply Selected Font" Click="Apply_Font_Click" Width="280" Height="41" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,95" Background="MediumSpringGreen" FontFamily="Microsoft Sams Serif" FontSize="16" />
         <Button Name="donate_button" Click="donate_button_Click"  Content="Support me 🎉" Width="280" Height="29" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,60" Background="#FFB8FD0A" FontFamily="Microsoft Sams Serif" />
         <Label Name="version" Content="[Version]" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="DarkGray" />
         <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="DarkGray" Margin="50,0,0,0">

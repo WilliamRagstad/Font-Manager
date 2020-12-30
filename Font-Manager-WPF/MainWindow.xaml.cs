@@ -8,6 +8,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -447,164 +448,6 @@ namespace CSGO_Font_Manager
             catch (UnauthorizedAccessException) { }
 
             return files;
-        }
-
-        private void apply_button_Click(object sender, EventArgs e)
-        {
-            if (CurrentFormView == FormViews.Main)
-            {
-                string message = "Do you want to apply " + FontList.SelectedItem + " to CS:GO?";
-                if (FontList.SelectedItem.Equals(defaultFontName))
-                {
-                    message = "Do you want to reset to the default font for CS:GO?";
-                }
-                MessageBoxResult MessageBoxResult = MessageBox.Show(message, "Are you sure?", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (MessageBoxResult == MessageBoxResult.Yes)
-                {
-                    //Get the csgo path (home folder...) if data file not found...
-                    if (Settings.CsgoPath != null)
-                    {
-                        // Make sure the folders exists
-                        string csgoConfD = csgoFontsFolder + "\\conf.d";
-                        if (!Directory.Exists(csgoFontsFolder)) Directory.CreateDirectory(csgoFontsFolder);
-                        if (!Directory.Exists(csgoConfD)) Directory.CreateDirectory(csgoConfD);
-
-                        // Remove all existing font files (.ttf, .otf, etc...)
-                        foreach (string file in Directory.GetFiles(csgoFontsFolder))
-                        {
-                            if (IsFontExtension(Path.GetExtension(file))) File.Delete(file);
-                        }
-
-                        if (FontList.SelectedItem.Equals(defaultFontName))
-                        {
-                            string csgoFontsConf = csgoFontsFolder + "\\fonts.conf";
-
-                            File.WriteAllText(csgoFontsConf, FileTemplates.fonts_conf_backup());
-                            MessageBox.Show("Successfully reset to the default font!", "Default Font Applied!",
-                                MessageBoxButton.OK, MessageBoxImage.Information);
-                        }
-                        else
-                        {
-                            string fontsConfPath = FontsFolder + FontList.SelectedItem + "\\fonts.conf";
-                            string csgoFontsConf = csgoFontsFolder + "\\fonts.conf";
-
-                            // Generate a new fonts.conf
-                            string fontFilePath = null;
-                            foreach (string file in Directory.GetFiles(FontsFolder + FontList.SelectedItem))
-                            {
-                                if (IsFontExtension(Path.GetExtension(file)))
-                                {
-                                    fontFilePath = file;
-                                    break;
-                                }
-                            }
-
-                            if (fontFilePath != null)
-                            {
-                                System.Drawing.FontFamily fontFamily = GetFontFamilyByName(FontList.SelectedItem.ToString());
-                                setupFontsDirectory(fontsConfPath, fontFamily.Name, Path.GetFileName(fontFilePath));
-                            }
-
-                            if (File.Exists(fontsConfPath))
-                            {
-                                //new FileIOPermission( FileIOPermissionAccess.Write ,csgoFontsConf).Demand(); https://github.com/dotnet/docs/issues/21021
-                                File.Copy(fontsConfPath, csgoFontsConf, true);
-
-                                // Add font file into csgo path
-                                foreach (string file in Directory.GetFiles(FontsFolder + FontList.SelectedItem))
-                                {
-                                    if (IsFontExtension(Path.GetExtension(file))) File.Copy(file, csgoFontsFolder + @"\" + Path.GetFileName(file), true);
-                                }
-
-                                bool csgoIsRunning = Process.GetProcessesByName("csgo").Length != 0;
-
-                                MessageBox.Show($"Successfully applied {FontList.SelectedItem}!" +
-                                                (csgoIsRunning ? "\n\nRestart CS:GO for the font to take effect." : ""),
-                                    "Font Applied!", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                                Settings.ActiveFont = FontList.SelectedItem.ToString();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Failed to apply font " + FontList.SelectedItem + "!\nThe fonts.conf file was not found...", "Failed to Apply", MessageBoxButton.OK, MessageBoxImage.Error);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Ooops! Seems like the CS:GO folder is unknown, please try to restart the program...", "No CS:GO Fonts folder", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                }
-            }
-            else if (CurrentFormView == FormViews.AddSystemFont)
-            {
-                FontFamily fontFamily = new FontFamily(FontList.SelectedItem.ToString());
-                //Font selectedFont = new Font(fontFamily, 14);
-
-                string fontFilePath = null;
-
-                string fontFileName = GetSystemFontFileName(fontFamily); // These return null verry often
-                if (fontFileName == null)
-                {
-                    List<string> matchedFontFileNames = GetFilesForFont(fontFamily.Source).ToList(); // These return null verry often
-                    if (matchedFontFileNames.Count > 0)
-                    {
-                        string[] mffn = matchedFontFileNames[0].Split('\\');
-                        fontFileName = mffn[mffn.Length - 1];
-                        fontFilePath = matchedFontFileNames[0];
-                    }
-                }
-                else
-                {
-                    fontFilePath = Environment.GetFolderPath(Environment.SpecialFolder.Fonts) + "\\" + fontFileName;
-                }
-
-                bool fontAlreadyExisted = false;
-                string fileFontDirectory = FontsFolder + sanitizeFilename(fontFamily.Source) + @"\";
-                // Check if font already exists
-                if (Directory.Exists(fileFontDirectory))
-                {
-                    if (MessageBox.Show(
-                            $"The font '{fontFamily.Source}' is already in your library, do you want to overwrite it?",
-                            "Overwrite Font?", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-                    {
-                        // Directory.Delete(fileFontDirectory, true);
-                        fontAlreadyExisted = true;
-                    }
-                    else
-                    {
-                        FontList.IsEnabled = true;
-                        return;
-                    }
-                }
-                // AddFont(filename, fontpath);
-
-                if (fontFilePath != null && File.Exists(fontFilePath))
-                {
-                    // Copy from C:\Windows\Fonts\[FONTNAME] to FontsFolder
-                    if (!fontAlreadyExisted) Directory.CreateDirectory(fileFontDirectory);
-
-                    //new FileIOPermission(FileIOPermissionAccess.Read, fontFilePath).Demand();
-                    //new FileIOPermission(FileIOPermissionAccess.Write, fileFontDirectory + fontFileName).Demand();
-                    File.Copy(fontFilePath, fileFontDirectory + fontFileName, true);
-
-                    // Initialize the font
-                    string fontsConfPath = fileFontDirectory + "fonts.conf";
-                    setupFontsDirectory(fontsConfPath, fontFamily.Source, Path.GetFileName(fontFilePath));
-
-                    MessageBox.Show("Success! The following font(s) has been added to your library!\n---\n" + fontFamily.Source, "Font(s) Added!", MessageBoxButton.OK, MessageBoxImage.Information);
-                    //fontFamily.;
-                    switchView(FormViews.Main);
-                }
-                else
-                {
-                    MessageBox.Show($"The filepath to '{fontFamily.Source}' could not be found. Please select another font.", "Font not found", MessageBoxButton.OK, MessageBoxImage.Information);
-                    // Call itself again
-                    addFont_button_Click(null, null);
-                }
-
-                refreshFontList();
-            }
         }
 
         public static string csgoPath = "";
@@ -1099,9 +942,19 @@ namespace CSGO_Font_Manager
                 switchView(FormViews.Main);
             }
         }
+        [DllImport("shell32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool IsUserAnAdmin();
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
+
+            if (!IsUserAnAdmin())
+            {
+                MessageBox.Show("Hey, for this program to function properly please start it as administrator", "", MessageBoxButton.OK, MessageBoxImage.Exclamation); Application.Current.Shutdown();
+            }
+
             AutoFocusRunningInstance();
             version.Content = "Version: " + VersionNumber;
 
@@ -1116,6 +969,164 @@ namespace CSGO_Font_Manager
 
             // Update all texts
             switchView(FormViews.Main);
+        }
+
+        private void Apply_Font_Click(object sender, RoutedEventArgs e)
+        {
+            if (CurrentFormView == FormViews.Main)
+            {
+                string message = "Do you want to apply " + FontList.SelectedItem + " to CS:GO?";
+                if (FontList.SelectedItem.Equals(defaultFontName))
+                {
+                    message = "Do you want to reset to the default font for CS:GO?";
+                }
+                MessageBoxResult MessageBoxResult = MessageBox.Show(message, "Are you sure?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (MessageBoxResult == MessageBoxResult.Yes)
+                {
+                    //Get the csgo path (home folder...) if data file not found...
+                    if (Settings.CsgoPath != null)
+                    {
+                        // Make sure the folders exists
+                        string csgoConfD = csgoFontsFolder + "\\conf.d";
+                        if (!Directory.Exists(csgoFontsFolder)) Directory.CreateDirectory(csgoFontsFolder);
+                        if (!Directory.Exists(csgoConfD)) Directory.CreateDirectory(csgoConfD);
+
+                        // Remove all existing font files (.ttf, .otf, etc...)
+                        foreach (string file in Directory.GetFiles(csgoFontsFolder))
+                        {
+                            if (IsFontExtension(Path.GetExtension(file))) File.Delete(file);
+                        }
+
+                        if (FontList.SelectedItem.Equals(defaultFontName))
+                        {
+                            string csgoFontsConf = csgoFontsFolder + "\\fonts.conf";
+
+                            File.WriteAllText(csgoFontsConf, FileTemplates.fonts_conf_backup());
+                            MessageBox.Show("Successfully reset to the default font!", "Default Font Applied!",
+                                MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                        else
+                        {
+                            string fontsConfPath = FontsFolder + FontList.SelectedItem + "\\fonts.conf";
+                            string csgoFontsConf = csgoFontsFolder + "\\fonts.conf";
+
+                            // Generate a new fonts.conf
+                            string fontFilePath = null;
+                            foreach (string file in Directory.GetFiles(FontsFolder + FontList.SelectedItem))
+                            {
+                                if (IsFontExtension(Path.GetExtension(file)))
+                                {
+                                    fontFilePath = file;
+                                    break;
+                                }
+                            }
+
+                            if (fontFilePath != null)
+                            {
+                                System.Drawing.FontFamily fontFamily = GetFontFamilyByName(FontList.SelectedItem.ToString());
+                                setupFontsDirectory(fontsConfPath, fontFamily.Name, Path.GetFileName(fontFilePath));
+                            }
+
+                            if (File.Exists(fontsConfPath))
+                            {
+                                //new FileIOPermission( FileIOPermissionAccess.Write ,csgoFontsConf).Demand(); https://github.com/dotnet/docs/issues/21021
+                                File.Copy(fontsConfPath, csgoFontsConf, true);
+
+                                // Add font file into csgo path
+                                foreach (string file in Directory.GetFiles(FontsFolder + FontList.SelectedItem))
+                                {
+                                    if (IsFontExtension(Path.GetExtension(file))) File.Copy(file, csgoFontsFolder + @"\" + Path.GetFileName(file), true);
+                                }
+
+                                bool csgoIsRunning = Process.GetProcessesByName("csgo").Length != 0;
+
+                                MessageBox.Show($"Successfully applied {FontList.SelectedItem}!" +
+                                                (csgoIsRunning ? "\n\nRestart CS:GO for the font to take effect." : ""),
+                                    "Font Applied!", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                                Settings.ActiveFont = FontList.SelectedItem.ToString();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Failed to apply font " + FontList.SelectedItem + "!\nThe fonts.conf file was not found...", "Failed to Apply", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ooops! Seems like the CS:GO folder is unknown, please try to restart the program...", "No CS:GO Fonts folder", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+            else if (CurrentFormView == FormViews.AddSystemFont)
+            {
+                FontFamily fontFamily = new FontFamily(FontList.SelectedItem.ToString());
+                //Font selectedFont = new Font(fontFamily, 14);
+
+                string fontFilePath = null;
+
+                string fontFileName = GetSystemFontFileName(fontFamily); // These return null verry often
+                if (fontFileName == null)
+                {
+                    List<string> matchedFontFileNames = GetFilesForFont(fontFamily.Source).ToList(); // These return null verry often
+                    if (matchedFontFileNames.Count > 0)
+                    {
+                        string[] mffn = matchedFontFileNames[0].Split('\\');
+                        fontFileName = mffn[mffn.Length - 1];
+                        fontFilePath = matchedFontFileNames[0];
+                    }
+                }
+                else
+                {
+                    fontFilePath = Environment.GetFolderPath(Environment.SpecialFolder.Fonts) + "\\" + fontFileName;
+                }
+
+                bool fontAlreadyExisted = false;
+                string fileFontDirectory = FontsFolder + sanitizeFilename(fontFamily.Source) + @"\";
+                // Check if font already exists
+                if (Directory.Exists(fileFontDirectory))
+                {
+                    if (MessageBox.Show(
+                            $"The font '{fontFamily.Source}' is already in your library, do you want to overwrite it?",
+                            "Overwrite Font?", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    {
+                        // Directory.Delete(fileFontDirectory, true);
+                        fontAlreadyExisted = true;
+                    }
+                    else
+                    {
+                        FontList.IsEnabled = true;
+                        return;
+                    }
+                }
+                // AddFont(filename, fontpath);
+
+                if (fontFilePath != null && File.Exists(fontFilePath))
+                {
+                    // Copy from C:\Windows\Fonts\[FONTNAME] to FontsFolder
+                    if (!fontAlreadyExisted) Directory.CreateDirectory(fileFontDirectory);
+
+                    //new FileIOPermission(FileIOPermissionAccess.Read, fontFilePath).Demand();
+                    //new FileIOPermission(FileIOPermissionAccess.Write, fileFontDirectory + fontFileName).Demand();
+                    File.Copy(fontFilePath, fileFontDirectory + fontFileName, true);
+
+                    // Initialize the font
+                    string fontsConfPath = fileFontDirectory + "fonts.conf";
+                    setupFontsDirectory(fontsConfPath, fontFamily.Source, Path.GetFileName(fontFilePath));
+
+                    MessageBox.Show("Success! The following font(s) has been added to your library!\n---\n" + fontFamily.Source, "Font(s) Added!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    //fontFamily.;
+                    switchView(FormViews.Main);
+                }
+                else
+                {
+                    MessageBox.Show($"The filepath to '{fontFamily.Source}' could not be found. Please select another font.", "Font not found", MessageBoxButton.OK, MessageBoxImage.Information);
+                    // Call itself again
+                    addFont_button_Click(null, null);
+                }
+
+                refreshFontList();
+            }
         }
     }
 }
