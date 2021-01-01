@@ -729,7 +729,10 @@ namespace CSGO_Font_Manager
                 string csgoDir = lib + @"\steamapps\common\Counter-Strike Global Offensive";
                 if (Directory.Exists(csgoDir))
                 {
-                    return csgoDir;
+                    if (File.Exists(csgoDir + @"\csgo.exe"))//If a user has Multiple CSGO directories choose the one with the csgo.exe present :)
+                    {
+                        return csgoDir;
+                    }
                 }
             }
 

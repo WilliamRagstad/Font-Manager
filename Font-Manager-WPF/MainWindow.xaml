@@ -23,7 +23,7 @@
             </ResourceDictionary>
         </Grid.Resources>
         <Label Name="title_Lable" Height="35" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" Content="CS:GO Fonts" FontFamily="Microsoft Sans Serif" FontSize="14.25" Foreground="#FF75CAF4" Margin="0,5,0,0" />
-        <TextBox Name="search_textBox" Height="22" Width="131" Background="DarkSlateGray" VerticalAlignment="Top" Margin="30,5,0,0" />
+        <TextBox Name="search_textBox" Height="22" Width="131" Background="DarkSlateGray" VerticalAlignment="Top" Margin="30,5,0,0" TextChanged="search_textBox_TextChanged" />
         <Button Name="addFont_button" Click="addFont_button_Click" Height="22" Width="22" Background="Transparent" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,39,0">
             <StackPanel>
                 <Image Source="Resources\add_retro.png" />
