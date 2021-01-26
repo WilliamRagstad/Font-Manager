@@ -108,7 +108,7 @@ namespace CSGO_Font_Manager
             this.donate_button.Name = "donate_button";
             this.donate_button.Size = new System.Drawing.Size(252, 29);
             this.donate_button.TabIndex = 11;
-            this.donate_button.Text = "Support me 🎉";
+            this.donate_button.Text = "Donate 🎉";
             this.donate_button.UseVisualStyleBackColor = false;
             this.donate_button.Click += new System.EventHandler(this.donate_button_Click);
             // 
