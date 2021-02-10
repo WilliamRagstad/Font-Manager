@@ -54,9 +54,8 @@ It features a "Drag-and-Drop" system which allows you to add new fonts in second
 Font Manager was developed due to a lack of utility softwares that utilized the font changing possibility for csgo.
 What it does is providing a simple user interface in which fonts are easily previewed, re-sized and applied to the game.
 
-Today, Font Manager has over 35 000 downloads and is vastly known as the best program for this task. This is something I am verry proud of!
-
-Due to this project not being sponsored or lacking features, this is sadly no longer in development and might become deprecated.
+Today, Font Manager has over 60 000 downloads and is vastly known as the best program for this task. This is something I am verry proud of!
+Tho, due to this project not being sponsored, this is sadly no longer in active development and might become deprecated. There will still be new update releases but with longer waiting periods.
 
 ### 1 Windows
 
