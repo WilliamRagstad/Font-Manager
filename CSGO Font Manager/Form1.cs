@@ -314,7 +314,7 @@ namespace CSGO_Font_Manager
                     remove_button.Visible = true;
                     trackBar1.Visible = true;
                     apply_button.Text = "Apply Selected Font";
-                    donate_button.Text = "Support me 🎉";
+                    donate_button.Text = "Become a Sponsor ✨";
                     donate_button.BackColor = Color.FromArgb(184, 253, 10);
                     search_textBox.Visible = false;
 
@@ -436,11 +436,8 @@ namespace CSGO_Font_Manager
 
         private void donate_button_Click(object sender, EventArgs e)
         {
-            if (CurrentFormView == FormViews.Main) Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WMFWT9YN58D26&source=url");
-            else
-            {
-                switchView(FormViews.Main);
-            }
+            if (CurrentFormView == FormViews.Main) Process.Start("https://github.com/sponsors/WilliamRagstad");
+            else switchView(FormViews.Main);
         }
 
         private void refreshFontList()
