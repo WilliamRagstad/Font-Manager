@@ -21,7 +21,7 @@
 <br/>
 
 > # 💖 Become a Sponsor
-> With your support, I will be able to **continue the development of Font Manager** and other Open-Source Software projects for the community!
+> With your support, I will be able to **continue to develop Font Manager** and other Open-Source Software projects for the community!
 > This project is complicated and will last for years, however it will, and have played a great role in the history of how the CS:GO community can customize the game experience. That's why **I need your support**.
 >
 > ✨ **Sponsor me** by clicking the button below and select a tier that fits you, **Buy me a coffe** or **Sponsor Font Manager** using the sponsor button at the top of the page!
