@@ -8,14 +8,14 @@
 </div>
 
 
-
+<br/>
+<br/>
 
 
 > ## Quick Install
 >
 > [Direct download](https://github.com/WilliamRagstad/Font-Manager/releases/latest/download/FontManager.exe) the latest version, or view all releases [here](https://github.com/WilliamRagstad/Font-Manager/releases).
 
-> ---
 
 <br/>
 <br/>
