@@ -17,8 +17,24 @@
 
 > ---
 
+<br/>
+<br/>
 
+> # 💖 Become a Sponsor
+> With your support, I will be able to **continue the development of Font Manager** and other Open-Source Software projects for the community!
+> This project is complicated and will last for years, however it will, and have played a great role in the history of how the CS:GO community can customize the game experience. That's why **I need your support**.
+>
+> ✨ **Sponsor me** by clicking the button below and select a tier that fits you, **Buy me a coffe** or **Sponsor Font Manager** using the sponsor button at the top of the page!
+> 
+> **Let's make Font Manager one of the best tools 🤟!**
+>
+<div align="center">
+ <a href="https://github.com/sponsors/WilliamRagstad"><img src="https://devblackops.io/images/github_sponsor_button.png" height="65"/></a>
+ <a href="https://www.buymeacoffee.com/williamragstad"><img src="https://www.buymeacoffee.com/assets/img/guidelines/download-assets-1.svg" height="70"/></a>
+</div>
 
+<br/>
+<br/>
 
 
 # Introduction
