@@ -29,8 +29,10 @@
 > **Let's make Font Manager one of the best tools 🤟!**
 >
 <div align="center">
- <a href="https://github.com/sponsors/WilliamRagstad"><img src="https://devblackops.io/images/github_sponsor_button.png" height="65"/></a>
- <a href="https://www.buymeacoffee.com/williamragstad"><img src="https://www.buymeacoffee.com/assets/img/guidelines/download-assets-1.svg" height="70"/></a>
+ <a href="https://github.com/sponsors/WilliamRagstad"><img src="https://github.com/WilliamRagstad/WilliamRagstad/raw/main/sponsor.png" height="60"/></a>
+  &nbsp;
+ <a href="https://www.buymeacoffee.com/williamragstad"><img src="https://github.com/WilliamRagstad/WilliamRagstad/raw/main/coffee.png" height="70"/></a>
+ <a href="https://paypal.me/williamragstad"><img src="https://github.com/WilliamRagstad/WilliamRagstad/raw/main/Paypal.png" height="70"/></a>
 </div>
 
 <br/>
@@ -67,7 +69,7 @@ It features a "Drag-and-Drop" system which allows you to add new fonts in second
 
 ### 0 History
 
-Font Manager was developed due to a lack of utility softwares that utilized the font changing possibility for csgo.
+Font Manager was developed due to a lack of utility softwares that utilized the font changing possibility for CS:GO.
 What it does is providing a simple user interface in which fonts are easily previewed, re-sized and applied to the game.
 
 Today, Font Manager has over 60 000 downloads and is vastly known as the best program for this task. This is something I am verry proud of!
@@ -100,13 +102,13 @@ At the bottom of the window is version information as well as a link to restore 
 
 The add font window looks the same as the main window, but here you can select from a list of already installed fonts on your computer. Select one and press the "Add Selected Font" button.
 
-### 2 Credits
+## Credits
 
-#### 2.1 Developers
+### 2.1 Developers
 
 Font Manager is developed by [Dotch](https://twitter.com/WilliamRagstad).
 
-#### 2.2 Others
+### 2.2 Others
 
 Thanks to the following people whose
 projects have helped develop Font Manager:
@@ -115,21 +117,21 @@ projects have helped develop Font Manager:
 - [rrroyal](https://github.com/rrroyal) - For coming up with the original method of changing CS:GO fonts. 
 - BananaGaming ([Maxim](https://twitter.com/BananaGamingCS)) - For design improvements for v3.0.
 
-#### 2.3 Community
+## Community
 
 Recieved a lot of improvement, ideas and suggestions from [feedback](https://docs.google.com/forms/d/e/1FAIpQLSfkChgD2T-RYNyfBCRL2EjUQfJ3y8tvPKemGJca2kMU1jV8AQ/viewform)!
 
-### 3 More
+## More
 
-#### 3.1 FAQ
+### FAQ
 
 Read the full [FAQ here](faq.md).
 
-#### 3.2 Need help?
+### Need help?
 
 Visit our [Subreddit](https://www.reddit.com/r/csgoFontManager/).
 
-#### 3.3 Do you have feedback?
+### Do you have feedback?
 
 Submit it [here](https://docs.google.com/forms/d/e/1FAIpQLSfkChgD2T-RYNyfBCRL2EjUQfJ3y8tvPKemGJca2kMU1jV8AQ/viewform)!
 
