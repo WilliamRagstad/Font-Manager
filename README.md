@@ -29,10 +29,10 @@
 > **Let's make Font Manager one of the best tools 🤟!**
 >
 <div align="center">
- <a href="https://github.com/sponsors/WilliamRagstad"><img src="https://github.com/WilliamRagstad/WilliamRagstad/raw/main/sponsor.png" height="60"/></a>
+ <a href="https://github.com/sponsors/WilliamRagstad"><img src="https://github.com/WilliamRagstad/WilliamRagstad/raw/main/img/sponsor.png" height="60"/></a>
   &nbsp;
- <a href="https://www.buymeacoffee.com/williamragstad"><img src="https://github.com/WilliamRagstad/WilliamRagstad/raw/main/coffee.png" height="70"/></a>
- <a href="https://paypal.me/williamragstad"><img src="https://github.com/WilliamRagstad/WilliamRagstad/raw/main/Paypal.png" height="70"/></a>
+ <a href="https://www.buymeacoffee.com/williamragstad"><img src="https://github.com/WilliamRagstad/WilliamRagstad/raw/main/img/coffee.png" height="70"/></a>
+ <a href="https://paypal.me/williamragstad"><img src="https://github.com/WilliamRagstad/WilliamRagstad/raw/main/img/paypal.png" height="70"/></a>
 </div>
 
 <br/>
